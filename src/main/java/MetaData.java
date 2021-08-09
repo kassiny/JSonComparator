@@ -18,5 +18,11 @@ public class MetaData {
         this.application = application;
     }
 
-
+    @Override
+    public String toString() {
+        return "MetaData{" +
+                "description=" + description +
+                ", application=" + application +
+                '}';
+    }
 }

@@ -1,6 +1,8 @@
+import JsonStructure.Hashes;
+import JsonStructure.MetaData;
 import com.fasterxml.jackson.databind.*;
-import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson. core.*;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -12,13 +14,16 @@ public class JSonTest {
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new Jdk8Module());
+        Hashes hashes;
         MetaData metaData1 = null;
         MetaData metaData2 = null;
         try {
             metaData1 = objectMapper.readValue(new File(args[0]), MetaData.class);
             metaData2 = objectMapper.readValue(new File(args[1]), MetaData.class);
-            // metaData1 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData1.json"), MetaData.class);
-            System.out.println(metaData1);
+            // metaData1 = objectMapper.readValue(new File(System.getProperty("metaData1")), JsonStructure.MetaData.class);
+            // metaData1 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData1.json"), JsonStructure.MetaData.class);
+             System.out.println(metaData1);
             System.out.println(metaData2);
 
         }

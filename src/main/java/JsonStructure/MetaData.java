@@ -1,3 +1,8 @@
+package JsonStructure;
+
+import JsonStructure.Application;
+import JsonStructure.Description;
+
 public class MetaData {
     Description description;
     Application application;
@@ -20,7 +25,7 @@ public class MetaData {
 
     @Override
     public String toString() {
-        return "MetaData{" +
+        return "JsonStructure.MetaData{" +
                 "description=" + description +
                 ", application=" + application +
                 '}';

@@ -1,3 +1,5 @@
+package JsonStructure;
+
 public class Description {
     int version;
 
@@ -11,7 +13,7 @@ public class Description {
 
     @Override
     public String toString() {
-        return "Description{" +
+        return "JsonStructure.Description{" +
                 "version=" + version +
                 '}';
     }

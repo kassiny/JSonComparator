@@ -1,3 +1,5 @@
+package JsonStructure;
+
 public class Application {
     String name;
 
@@ -11,7 +13,7 @@ public class Application {
 
     @Override
     public String toString() {
-        return "Application{" +
+        return "JsonStructure.Application{" +
                 "name='" + name + '\'' +
                 '}';
     }

@@ -4,7 +4,7 @@ import JsonStructure.Hashes;
 
 import java.util.Optional;
 
-public class rpm {
+public class Rpm {
     String url;
     String rpm_repository_name;
     Hashes hashes;

@@ -1,10 +1,12 @@
 package JsonStructure;
 
 import JsonStructure.Hashes;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Optional;
 
 public class Service {
+    @JsonProperty("service-short-name")
     String service_short_name;
     Optional<String> service_name;
     Optional<String> artifact_type;

@@ -28,4 +28,5 @@ public class ArtifactMvn extends Artifact {
                 ", target_repository='" + target_repository + '\'' +
                 '}';
     }
+
 }

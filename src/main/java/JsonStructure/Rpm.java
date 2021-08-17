@@ -1,6 +1,7 @@
 package JsonStructure;
 
 import JsonStructure.Hashes;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ public class Rpm {
     String url;
     String rpm_repository_name;
     Hashes hashes;
+    @JsonProperty("service-short-name")
     Optional<String> service_short_name;
 
 

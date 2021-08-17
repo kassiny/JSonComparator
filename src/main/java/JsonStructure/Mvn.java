@@ -1,12 +1,10 @@
 package JsonStructure;
 
-import JsonStructure.Hashes;
-
 import java.util.Optional;
 
 public class Mvn {
     String groupId;
-    String arifactId;
+    String artifactId;
     String version;
     Optional<String> service_name;
     Optional<String> classifier;
@@ -22,12 +20,12 @@ public class Mvn {
         this.groupId = groupId;
     }
 
-    public String getArifactId() {
-        return arifactId;
+    public String getArtifactId() {
+        return artifactId;
     }
 
-    public void setArifactId(String arifactId) {
-        this.arifactId = arifactId;
+    public void setArtifactId(String artifactId) {
+        this.artifactId = artifactId;
     }
 
     public String getVersion() {
@@ -82,7 +80,7 @@ public class Mvn {
     public String toString() {
         return "JsonStructure.Mvn{" +
                 "groupId='" + groupId + '\'' +
-                ", arifactId='" + arifactId + '\'' +
+                ", arifactId='" + artifactId + '\'' +
                 ", version='" + version + '\'' +
                 ", service_name=" + service_name +
                 ", classifier=" + classifier +

@@ -1,7 +1,8 @@
-import JsonStructure.Hashes;
-import JsonStructure.MetaData;
-import JsonStructure.V2;
+import JsonStructure.*;
 import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.databind.jsontype.NamedType;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 
 
@@ -15,7 +16,16 @@ public class JSonTest {
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
+
         objectMapper.registerModule(new Jdk8Module());
+
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(Artifact.class, new ArtifactDeserializer());
+
+        objectMapper.registerModule(module);
+        objectMapper.registerSubtypes(new NamedType(ArtifactMvn.class, "ArtifactMvn"));
+        objectMapper.registerSubtypes(new NamedType(ArtifactFile.class, "ArtifactFile"));
+
         Hashes hashes;
         MetaData metaData1 = null;
         MetaData metaData2 = null;

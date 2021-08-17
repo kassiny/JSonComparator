@@ -1,14 +1,17 @@
 package JsonStructure;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Optional;
 
 public class V2 {
     MetaData metadata;
     Service[] services;
+    // Object[] artifacts;
+    // Map<ArtifactMvn, ArtifactFile[]> artifacts;
     Artifact[] artifacts;
     Script[] script;
-    Optional<Rpm[]> rpm;
+    Rpm rpm;
     Parameters parameters;
 
     public MetaData getMetadata() {
@@ -43,11 +46,11 @@ public class V2 {
         this.script = script;
     }
 
-    public Optional<Rpm[]> getRpm() {
+    public Rpm getRpm() {
         return rpm;
     }
 
-    public void setRpm(Optional<Rpm[]> rpm) {
+    public void setRpm(Rpm rpm) {
         this.rpm = rpm;
     }
 
@@ -64,7 +67,7 @@ public class V2 {
         return "V2{" +
                 "metaData=" + metadata +
                 ", services=" + Arrays.toString(services) +
-                ", artifacts=" + Arrays.toString(artifacts) +
+                ", artifacts=" + artifacts +
                 ", script=" + Arrays.toString(script) +
                 ", rpm=" + rpm +
                 ", parameters=" + parameters +

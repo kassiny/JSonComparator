@@ -1,11 +1,15 @@
 package JsonStructure;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Parameters {
 
     Common common;
     Services services;
     public class Common {
+        @JsonProperty("some-param")
         String some_param;
+        @JsonProperty("some-other-param")
         String some_other_param;
 
         @Override
@@ -34,10 +38,12 @@ public class Parameters {
     }
 
     public class Services {
+        @JsonProperty("service_name")
         Service_name_1 service_name_1;
         Service_name_2 service_name_2;
 
         public class  Service_name_1 {
+            @JsonProperty("some-third-param")
             String some_third_param;
 
             public String getSome_third_param() {
@@ -56,6 +62,7 @@ public class Parameters {
             }
         }
         public class Service_name_2 {
+            @JsonProperty("some-third-param")
             public String some_third_param_2;
 
             public String getSome_third_param_2() {

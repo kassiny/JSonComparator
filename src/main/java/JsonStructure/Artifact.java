@@ -1,7 +1,20 @@
 package JsonStructure;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public abstract class Artifact {
+    @JsonProperty("target_repository")
     String target_repository;
+
+    String artifactType;
+
+    public String getArtifactType() {
+        return artifactType;
+    }
+
+    public void setArtifactType(String artifactType) {
+        this.artifactType = artifactType;
+    }
 
     public String getTarget_repository() {
         return target_repository;

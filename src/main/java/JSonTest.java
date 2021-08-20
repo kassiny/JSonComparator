@@ -1,4 +1,5 @@
 import JsonStructure.*;
+import Comparator.*;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.jsontype.NamedType;
@@ -35,10 +36,12 @@ public class JSonTest {
             // metaData2 = objectMapper.readValue(new File(args[1]), MetaData.class);
             finalJson = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\v2_json_sample.json"), V2.class);
             // metaData1 = objectMapper.readValue(new File(System.getProperty("metaData1")), JsonStructure.MetaData.class);
-            // metaData1 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData1.json"), JsonStructure.MetaData.class);
+             metaData1 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData1.json"), JsonStructure.MetaData.class);
+            metaData2 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData2.json"), JsonStructure.MetaData.class);
             // System.out.println(metaData1);
            // System.out.println(metaData2);
             System.out.println(finalJson);
+            System.out.println(MetaDataComparator.compare(metaData1, metaData2));
 
         }
         catch (IOException e) {

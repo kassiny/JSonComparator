@@ -1,109 +1,73 @@
 package JsonStructure;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Parameters {
 
     Common common;
     Services services;
     public class Common {
-        @JsonProperty("some-param")
-        String some_param;
-        @JsonProperty("some-other-param")
-        String some_other_param;
+        @JsonProperty("map")
+        Map<String, String> params = new HashMap<>();
+
+        public Map<String, String> getParams() {
+            return params;
+        }
+        @JsonAnySetter
+        public void addParam(String key, String value) {
+            params.put(key, value);
+        }
+
+        public void setParams(Map<String, String> params) {
+            this.params = params;
+        }
+
+        @JsonCreator
+        public Common(Map<String, String> params) {
+            this.params = params;
+        }
+
+        public Common() {};
 
         @Override
         public String toString() {
-            return "common{" +
-                    "some_param='" + some_param + '\'' +
-                    ", some_other_param='" + some_other_param + '\'' +
+            return "Common{" +
+                    "params=" + params +
                     '}';
-        }
-
-        public String getSome_param() {
-            return some_param;
-        }
-
-        public void setSome_param(String some_param) {
-            this.some_param = some_param;
-        }
-
-        public String getSome_other_param() {
-            return some_other_param;
-        }
-
-        public void setSome_other_param(String some_other_param) {
-            this.some_other_param = some_other_param;
         }
     }
 
     public class Services {
-        @JsonProperty("service_name")
-        Service_name_1 service_name_1;
-        Service_name_2 service_name_2;
 
-        public class  Service_name_1 {
-            @JsonProperty("some-third-param")
-            String some_third_param;
+        @JsonProperty("map")
+        Map<String, Service_name> sn = new HashMap<>();
 
-            public String getSome_third_param() {
-                return some_third_param;
-            }
-
-            public void setSome_third_param(String some_third_param) {
-                this.some_third_param = some_third_param;
-            }
-
-            @Override
-            public String toString() {
-                return "Service_name1{" +
-                        "some_third_param='" + some_third_param + '\'' +
-                        '}';
-            }
-        }
-        public class Service_name_2 {
-            @JsonProperty("some-third-param")
-            public String some_third_param_2;
-
-            public String getSome_third_param_2() {
-                return some_third_param_2;
-            }
-
-            public void setSome_third_param_2(String some_third_param_2) {
-                this.some_third_param_2 = some_third_param_2;
-            }
-
-            @Override
-            public String toString() {
-                return "Service_name_2{" +
-                        "some_third_param_2='" + some_third_param_2 + '\'' +
-                        '}';
-            }
+        public Map<String, Service_name> getSn() {
+            return sn;
         }
 
-        public Service_name_1 getService_name_1() {
-            return service_name_1;
+        @JsonAnySetter
+        public void addService(String key, Service_name serviceName) {
+            sn.put(key, serviceName);
         }
 
-        public void setService_name_1(Service_name_1 service_name_1) {
-            this.service_name_1 = service_name_1;
-        }
-
-        public Service_name_2 getService_name_2() {
-            return service_name_2;
-        }
-
-        public void setService_name_2(Service_name_2 service_name_2) {
-            this.service_name_2 = service_name_2;
+        public void setSn(Map<String, Service_name> map) {
+            this.sn = map;
         }
 
         @Override
         public String toString() {
             return "Services{" +
-                    "service_name_1=" + service_name_1 +
-                    ", service_name_2=" + service_name_2 +
+                    "sn=" + sn +
                     '}';
         }
+
+        public Services() {}
     }
 
     public Common getCommon() {

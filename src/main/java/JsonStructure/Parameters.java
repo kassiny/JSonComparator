@@ -19,11 +19,11 @@ public class Parameters {
             return params;
         }
         @JsonAnySetter
-        public void addParam(String key, String value) {
+        public void addParam (String key, String value) {
             params.put(key, value);
         }
 
-        public void setParams(Map<String, String> params) {
+        public void setParams (Map<String, String> params) {
             this.params = params;
         }
 
@@ -66,6 +66,7 @@ public class Parameters {
                     "sn=" + sn +
                     '}';
         }
+
 
         public Services() {}
     }

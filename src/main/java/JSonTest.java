@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class JSonTest {
@@ -42,6 +43,8 @@ public class JSonTest {
            // System.out.println(metaData2);
             System.out.println(finalJson);
             System.out.println(MetaDataComparator.compare(metaData1, metaData2));
+            FileOutputStream comResult = new FileOutputStream("result.html");
+            comResult.write(MetaDataComparator.compare(metaData1, metaData2).getBytes());
 
         }
         catch (IOException e) {

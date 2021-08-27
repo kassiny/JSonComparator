@@ -5,6 +5,11 @@ import org.jsoup.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+
+import javax.lang.model.util.Elements;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class MetaDataComparator {
@@ -24,23 +29,29 @@ public class MetaDataComparator {
 
         Document document = Jsoup.parse("");
 
-        document.body().appendText("MetaData: { \n\t Description: {\n\t");
-        document.body().appendElement("p");
+        document.body().appendElement("table");
+        document.body().selectFirst("table").appendElement("tr").append("<th>Element</th><th>Previous</th><th>Current</th>");
 
 
         result.append("MetaData: { \n" +
                 "Description: { \n");
+        
         if (m1.getDescription().getVersion() == m2.getDescription().getVersion()) {
-            document.body().selectFirst("p").attr("style","color:DarkGreen");
-            document.body().selectFirst("p").appendText("version: " + String.valueOf(m1.getDescription().getVersion()));
+            document.body().selectFirst("table").appendElement("tr").append("<th>version</th><th>" +
+                    String.valueOf(m1.getDescription().getVersion()) + "</th><th>"+
+                    String.valueOf(m2.getDescription().getVersion()) + "</th>");
 
             result.append("version wasn't changed. Current version: ");
             result.append(m1.getDescription().getVersion());
             result.append('\n');
         }
         else {
-            document.body().selectFirst("p").attr("style","color:GoldenRod");
-            document.body().selectFirst("p").appendText("version: " + String.valueOf(m2.getDescription().getVersion()));
+
+            document.body().selectFirst("table").appendElement("tr").
+                    appendChildren(new ArrayList<Node>(Arrays.asList(
+                            new Element("th").appendText("version"),
+                            new Element("th").appendText(String.valueOf(m1.getDescription().getVersion())).attr("style","color:GoldenRod"),
+                            new Element("th").appendText(String.valueOf(m2.getDescription().getVersion())).attr("style","color:GoldenRod"))));
 
             result.append("version was changed. Previous version: ");
             result.append(m1.getDescription().getVersion());
@@ -56,23 +67,28 @@ public class MetaDataComparator {
 
         if (m1.getApplication().getName().equals(m2.getApplication().getName())) {
             result.append("Name wasn't changed. Current name: ");
-            document.body().appendElement("p2").attr("style", "color: DarkGreen").
-                    appendElement("name: " +  m1.getApplication().getName() );
+            document.body().selectFirst("table").appendElement("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("name"),
+                    new Element("th").appendText(m1.getApplication().getName()),
+                    new Element("th").appendText(m1.getApplication().getName())
+            )));
 
             result.append(m1.getApplication().getName());
             result.append('\n');
         }
         else {
-            document.body().appendElement("p").attr("style", "color: GoldenROd").
-                    appendText("name: " +  m1.getApplication().getName() );
+            document.body().selectFirst("table").appendElement("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("name"),
+                    new Element("th").appendText(m1.getApplication().getName()).attr("style", "color: GoldenROd"),
+                    new Element("th").appendText(m2.getApplication().getName()).attr("style", "color: GoldenROd")
+            )));
+
 
             result.append("Name was changed. Previous name: ");
             result.append(m1.getApplication().getName());
             result.append("\n Current name: ");
             result.append(m2.getApplication().getName());
         }
-
-        document.body().appendText("}\n");
 
         result.append("} \n }\n");
         //return result.toString();

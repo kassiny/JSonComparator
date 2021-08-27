@@ -3,6 +3,7 @@ package JsonStructure;
 import JsonStructure.Hashes;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class Service {
@@ -18,6 +19,26 @@ public class Service {
     Optional<String> github_branch;
     Optional<String> github_hash;
     Hashes hashes;
+
+    public Optional<String> getService_name() {
+        return service_name;
+    }
+
+    public Optional<String> getArtifact_type() {
+        return artifact_type;
+    }
+
+    public Optional<String> getGithub_repository() {
+        return github_repository;
+    }
+
+    public Optional<String> getGithub_branch() {
+        return github_branch;
+    }
+
+    public Optional<String> getGithub_hash() {
+        return github_hash;
+    }
 
     public void setService_name(Optional<String> service_name) {
         this.service_name = service_name;
@@ -102,5 +123,18 @@ public class Service {
                 ", github_hash='" + github_hash + '\'' +
                 ", hashes=" + hashes +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Service)) return false;
+        Service service = (Service) o;
+        return Objects.equals(service_short_name, service.service_short_name) && Objects.equals(service_name, service.service_name) && Objects.equals(artifact_type, service.artifact_type) && Objects.equals(docker_registry, service.docker_registry) && Objects.equals(docker_image_name, service.docker_image_name) && Objects.equals(docker_tag, service.docker_tag) && Objects.equals(force, service.force) && Objects.equals(github_repository, service.github_repository) && Objects.equals(github_branch, service.github_branch) && Objects.equals(github_hash, service.github_hash) && Objects.equals(hashes, service.hashes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(service_short_name, service_name, artifact_type, docker_registry, docker_image_name, docker_tag, force, github_repository, github_branch, github_hash, hashes);
     }
 }

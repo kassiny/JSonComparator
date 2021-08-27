@@ -43,8 +43,14 @@ public class JSonTest {
            // System.out.println(metaData2);
             System.out.println(finalJson);
             System.out.println(MetaDataComparator.compare(metaData1, metaData2));
-            FileOutputStream comResult = new FileOutputStream("result.html");
+
+            FileOutputStream comResult = new FileOutputStream("resultMetaData.html");
             comResult.write(MetaDataComparator.compare(metaData1, metaData2).getBytes());
+            comResult.close();
+
+            FileOutputStream serRes = new FileOutputStream("resultServices.html");
+            serRes.write(ServicesComparator.compare(finalJson.getServices(), finalJson.getServices()).getBytes());
+            serRes.close();
 
         }
         catch (IOException e) {

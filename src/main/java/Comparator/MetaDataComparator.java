@@ -31,11 +31,14 @@ public class MetaDataComparator {
 
         document.body().appendElement("table");
         document.body().selectFirst("table").appendElement("tr").append("<th>Element</th><th>Previous</th><th>Current</th>");
-
+        document.body().selectFirst("table").appendElement("tr").appendElement("th").
+                appendText("MetaData").attr("text-align","center");
+        document.body().selectFirst("table").appendElement("tr").appendElement("th").
+                appendText("Description").attr("text-align","center");
 
         result.append("MetaData: { \n" +
                 "Description: { \n");
-        
+
         if (m1.getDescription().getVersion() == m2.getDescription().getVersion()) {
             document.body().selectFirst("table").appendElement("tr").append("<th>version</th><th>" +
                     String.valueOf(m1.getDescription().getVersion()) + "</th><th>"+
@@ -59,7 +62,8 @@ public class MetaDataComparator {
             result.append(m2.getDescription().getVersion());
         }
 
-        document.body().appendText("}\n\tApplication: {\n\t");
+        document.body().selectFirst("table").appendElement("tr").appendElement("th").
+                appendText("Application").attr("text-align","center");
 
         result.append("}\n");
         result.append("Application: {\n");

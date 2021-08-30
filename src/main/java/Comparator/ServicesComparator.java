@@ -110,8 +110,12 @@ public class ServicesComparator {
          document.body().appendElement("table").appendElement("tr").appendElement("th").appendText("Services");
          document.body().selectFirst("table").attr("border", "1px solid black");
 
+
          for (Service ser1: s1) {
+
+             boolean foundchanged = false;
              for (Service ser2: s2) {
+                 foundchanged = true;
                  // Comparing services by keys
                 if (ser1.getDocker_image_name().equals(ser2.getDocker_image_name())
                         && ser1.getDocker_tag().equals(ser2.getDocker_tag())) {
@@ -126,6 +130,9 @@ public class ServicesComparator {
                         document.body().selectFirst("table").appendChildren(formATable(ser1, ser2, "GoldenRod"));
                     }
                 }
+             }
+             if (!foundchanged) {
+                 document.body().selectFirst("table").appendChildren(formATable(ser1,ser1,"Red"));
              }
          }
 

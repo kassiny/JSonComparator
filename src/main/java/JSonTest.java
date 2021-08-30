@@ -14,7 +14,7 @@ import java.io.IOException;
 public class JSonTest {
     public static void main(String[] args) {
         if (args.length<2) {
-            System.out.println("Please, specify thhe metada files using DmetaData1 and Dmetadata2 commands");
+            System.out.println("Please, specify the metada files using DmetaData1 and Dmetadata2 commands");
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -31,17 +31,19 @@ public class JSonTest {
         Hashes hashes;
         MetaData metaData1 = null;
         MetaData metaData2 = null;
-        V2 finalJson = null;
+        V2 finalJson1 = null;
+        V2 finalJson2 = null;
         try {
             // metaData1 = objectMapper.readValue(new File(args[0]), MetaData.class);
             // metaData2 = objectMapper.readValue(new File(args[1]), MetaData.class);
-            finalJson = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\v2_json_sample.json"), V2.class);
+            finalJson1 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\v2_json_sample.json"), V2.class);
+            finalJson2 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\v2_json_sample2.json"), V2.class);
             // metaData1 = objectMapper.readValue(new File(System.getProperty("metaData1")), JsonStructure.MetaData.class);
              metaData1 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData1.json"), JsonStructure.MetaData.class);
             metaData2 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData2.json"), JsonStructure.MetaData.class);
             // System.out.println(metaData1);
            // System.out.println(metaData2);
-            System.out.println(finalJson);
+            System.out.println(finalJson1);
             System.out.println(MetaDataComparator.compare(metaData1, metaData2));
 
             FileOutputStream comResult = new FileOutputStream("resultMetaData.html");
@@ -49,7 +51,7 @@ public class JSonTest {
             comResult.close();
 
             FileOutputStream serRes = new FileOutputStream("resultServices.html");
-            serRes.write(ServicesComparator.compare(finalJson.getServices(), finalJson.getServices()).getBytes());
+            serRes.write(ServicesComparator.compare(finalJson1.getServices(), finalJson2.getServices()).getBytes());
             serRes.close();
 
         }

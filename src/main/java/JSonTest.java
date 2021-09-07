@@ -54,6 +54,9 @@ public class JSonTest {
             serRes.write(ServicesComparator.compare(finalJson1.getServices(), finalJson2.getServices()).getBytes());
             serRes.close();
 
+            FileOutputStream artRes = new FileOutputStream("sefultArtifacts.html");
+            artRes.write(ArtifactComparator.compare(finalJson1.getArtifacts(), finalJson2.getArtifacts()).getBytes());
+
         }
         catch (IOException e) {
             e.printStackTrace();

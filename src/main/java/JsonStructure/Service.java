@@ -137,4 +137,13 @@ public class Service {
     public int hashCode() {
         return Objects.hash(service_short_name, service_name, artifact_type, docker_registry, docker_image_name, docker_tag, force, github_repository, github_branch, github_hash, hashes);
     }
+
+    public Service () {
+        service_name = Optional.empty();
+        artifact_type = Optional.empty();
+        force = Optional.empty();
+        github_repository = Optional.empty();
+        github_branch = Optional.empty();
+        github_hash = Optional.empty();
+    }
 }

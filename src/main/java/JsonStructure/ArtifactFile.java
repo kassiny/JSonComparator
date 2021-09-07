@@ -54,4 +54,10 @@ public class ArtifactFile extends Artifact{
                 ", file=" + Arrays.toString(file) +
                 '}';
     }
+
+    public ArtifactFile() {
+        artifactType = ArtifactType.FILE.value;
+        service_short_name = Optional.empty();
+        service_name = Optional.empty();
+    }
 }

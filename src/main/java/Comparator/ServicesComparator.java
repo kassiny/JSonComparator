@@ -11,9 +11,6 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public class ServicesComparator {
-    // create an empty html document
-     //Document result = Jsoup.parse("");
-
 
      ArrayList<Service> services;
 
@@ -26,87 +23,216 @@ public class ServicesComparator {
         this.services = services;
     }
 
-    static ArrayList<Node> formATable(Service service, String color) {
+    static ArrayList<Node> formATable(Service service, ChangeMode mode) {
         ArrayList<Node> res = new ArrayList<>();
 
         res.add(new Element("tr").appendElement("th").appendText("Service"));
+        String color;
+        switch (mode) {
+            case DELETED: color = "red"; break;
+            case ADDED: color = "DarkGreen"; break;
+            default: color = "black";
+        }
 
-        //if (change == ColorChange.YELLOW)
-        res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                new Element("th").appendText("service_short_name"),
-                new Element("th").appendText(service.getService_short_name()).
-                        attr("style",
-                                "color: " + color)
+        if (mode.equals(ChangeMode.DELETED)) {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("service_short_name"),
+                    new Element("th").appendText(service.getService_short_name()).
+                            attr("style",
+                                    "color: " + color)
 
-        ))));
+            ))));
+        }
+        else {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("service_short_name"),
+                    new Element("th").appendText(" "),
+                    new Element("th").appendText(service.getService_short_name()).
+                            attr("style",
+                                    "color: " + color)
 
-        res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                new Element("th").appendText("service_name"),
-                new Element("th").appendText(service.getService_name().get()).
-                        attr("style", "color:" +color)
-        ))));
+            ))));
+        }
 
-        res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                new Element("th").appendText("artifact_type"),
-                new Element("th").appendText(service.getArtifact_type().get()).
-                        attr("style", "color:" +color)
-        ))));
+        if (mode.equals(ChangeMode.ADDED)) {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("service_name"),
+                    new Element("th").appendText(""),
+                    new Element("th").appendText(service.getService_name().get()).
+                            attr("style", "color:" + color)
 
-        res.add(new Element("tr").appendChildren( new ArrayList<>(Arrays.asList(
-                new Element("th").appendText("docker_registry"),
-                new Element("th").appendText(service.getDocker_registry()).
-                        attr("style", "color:" + color)
-        ))));
+            ))));
+        }
+        else {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("service_name"),
+                    new Element("th").appendText(service.getService_name().get()).
+                            attr("style", "color:" + color)
 
-        res.add(new Element("tr").appendChildren( new ArrayList<>(Arrays.asList(
-                new Element("th").appendText("docker_image"),
-                new Element("th").appendText(service.getDocker_image_name()).
-                        attr("style", "color:" + color)
-        ))));
+            ))));
+        }
+        if (mode.equals(ChangeMode.ADDED)) {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("artifact_type"),
+                    new Element("th").appendText(""),
+                    new Element("th").appendText(service.getArtifact_type().get()).
+                            attr("style", "color:" + color)
+            ))));
+        }
+        else {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("artifact_type"),
+                    new Element("th").appendText(service.getArtifact_type().get()).
+                            attr("style", "color:" + color)
+            ))));
+        }
 
-        res.add(new Element("tr").appendChildren( new ArrayList<>(Arrays.asList(
-                new Element("th").appendText("docker_tag"),
-                new Element("th").appendText(service.getDocker_tag()).
-                        attr("style", "color:" +color)
-        ))));
+        if (mode.equals(ChangeMode.ADDED)) {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("docker_registry"),
+                    new Element("th").appendText(""),
+                    new Element("th").appendText(service.getDocker_registry()).
+                            attr("style", "color:" + color)
+            ))));
+        }
+        else {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("docker_registry"),
+                    new Element("th").appendText(service.getDocker_registry()).
+                            attr("style", "color:" + color)
+            ))));
+        }
 
-        res.add(new Element("tr").appendChildren( new ArrayList<>(Arrays.asList(
-                new Element("th").appendText("force"),
-                new Element("th").appendText(service.getForce().get().toString()).
-                        attr("style", "color:" +color)
-        ))));
+        if (mode.equals(ChangeMode.ADDED)) {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("docker_image"),
+                    new Element("th").appendText(""),
+                    new Element("th").appendText(service.getDocker_image_name()).
+                            attr("style", "color:" + color)
+            ))));
+        }
+        else {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("docker_image"),
+                    new Element("th").appendText(service.getDocker_image_name()).
+                            attr("style", "color:" + color)
+            ))));
+        }
 
-        res.add(new Element("tr").appendChildren( new ArrayList<>(Arrays.asList(
-                new Element("th").appendText("github_repository"),
-                new Element("th").appendText(service.getGithub_repository().get()).
-                        attr("style", "color:" + color)
-        ))));
+        if (mode.equals(ChangeMode.ADDED)) {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("docker_tag"),
+                    new Element("th").appendText(""),
+                    new Element("th").appendText(service.getDocker_tag()).
+                            attr("style", "color:" + color)
+            ))));
+        }
+        else {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("docker_tag"),
+                    new Element("th").appendText(service.getDocker_tag()).
+                            attr("style", "color:" + color)
+            ))));
+        }
 
-        res.add(new Element("tr").appendChildren( new ArrayList<>( Arrays.asList(
-                new Element("th").appendText("github_branch"),
-                new Element("th").appendText(service.getGithub_branch().get()).
-                        attr("style", "color:" + color)
-        ))));
+        if (mode.equals(ChangeMode.ADDED)) {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("force"),
+                    new Element("th").appendText(""),
+                    new Element("th").appendText(service.getForce().get().toString()).
+                            attr("style", "color:" + color)
+            ))));
+        }
+        else {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("force"),
+                    new Element("th").appendText(service.getForce().get().toString()).
+                            attr("style", "color:" + color)
+            ))));
+        }
 
-        res.add(new Element("tr").appendChildren( new ArrayList<>(Arrays.asList(
-                new Element("th").appendText("github_hash"),
-                new Element("th").appendText(service.getGithub_hash().get()).
-                        attr("style", "color:" + color)
-        ))));
+        if (mode.equals(ChangeMode.ADDED)) {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("github_repository"),
+                    new Element("th").appendText(""),
+                    new Element("th").appendText(service.getGithub_repository().get()).
+                            attr("style", "color:" + color)
+            ))));
+        }
+        else {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("github_repository"),
+                    new Element("th").appendText(service.getGithub_repository().get()).
+                            attr("style", "color:" + color)
+            ))));
+        }
+        if (mode.equals(ChangeMode.ADDED)) {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("github_branch"),
+                    new Element("th").appendText(""),
+                    new Element("th").appendText(service.getGithub_branch().get()).
+                            attr("style", "color:" + color)
+            ))));
+        }
+        else {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("github_branch"),
+
+                    new Element("th").appendText(service.getGithub_branch().get()).
+                            attr("style", "color:" + color)
+            ))));
+        }
+
+        if (mode.equals(ChangeMode.ADDED)) {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("github_hash"),
+                    new Element("th").appendText(""),
+                    new Element("th").appendText(service.getGithub_hash().get()).
+                            attr("style", "color:" + color)
+            ))));
+        }
+        else {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("github_hash"),
+
+                    new Element("th").appendText(service.getGithub_hash().get()).
+                            attr("style", "color:" + color)
+            ))));
+        }
 
         res.add(new Element("tr").appendElement("th").appendText("hashes"));
 
-        res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                new Element("th").appendText("sha1"),
-                new Element("th").appendText(service.getHashes().getSha1()).
-                        attr("style", "color:" + color)
-        ))));
+        if (mode.equals(ChangeMode.ADDED)) {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("sha1"),
+                    new Element("th").appendText(""),
+                    new Element("th").appendText(service.getHashes().getSha1()).
+                            attr("style", "color:" + color)
+            ))));
+        }
+        else {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("sha1"),
+                    new Element("th").appendText(service.getHashes().getSha1()).
+                            attr("style", "color:" + color)
+            ))));
+        }
 
-        res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                new Element("th").appendText("sha256"),
-                new Element("th").appendText(service.getHashes().getSha256()).
-                        attr("style", "color:" + color)
-        ))));
+        if (mode.equals(ChangeMode.ADDED)) {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("sha256"),
+                    new Element("th").appendText(""),
+                    new Element("th").appendText(service.getHashes().getSha256()).
+                            attr("style", "color:" + color)
+            ))));
+        }
+        else {
+            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+                    new Element("th").appendText("sha256"),
+                    new Element("th").appendText(service.getHashes().getSha256()).
+                            attr("style", "color:" + color)
+            ))));
+        }
 
         res.add(new Element("tr").appendText("  "));
 
@@ -267,18 +393,16 @@ public class ServicesComparator {
                 }
              }
              if (!foundchanged) {
-                 document.body().selectFirst("table").appendChildren(formATable(ser1, "Red"));
+                 document.body().selectFirst("table").appendChildren(formATable(ser1, ChangeMode.DELETED));
              }
          }
 
          for (int i = 0; i < s2.length; i ++) {
              if (!foundInSecond[i]) {
-                 document.body().selectFirst("table").appendChildren(formATable(s2[i], "DarkGreen"));
+                 document.body().selectFirst("table").appendChildren(formATable(s2[i], ChangeMode.ADDED));
              }
          }
 
          return document.outerHtml();
      }
-
-
 }

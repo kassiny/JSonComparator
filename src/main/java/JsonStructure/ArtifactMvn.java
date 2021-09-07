@@ -29,4 +29,8 @@ public class ArtifactMvn extends Artifact {
                 '}';
     }
 
+    public ArtifactMvn() {
+        artifactType = ArtifactType.MVN.value;
+    }
+
 }

@@ -89,4 +89,8 @@ public class Mvn {
                 ", hashes=" + hashes +
                 '}';
     }
+    public Mvn () {
+        classifier = Optional.empty();
+        service_name = Optional.empty();
+    }
 }

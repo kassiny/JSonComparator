@@ -57,6 +57,9 @@ public class JSonTest {
             FileOutputStream artRes = new FileOutputStream("sefultArtifacts.html");
             artRes.write(ArtifactComparator.compare(finalJson1.getArtifacts(), finalJson2.getArtifacts()).getBytes());
 
+            FileOutputStream scrpt = new FileOutputStream("ScriptResult.html");
+            scrpt.write(ScriptComparator.compare(finalJson1.getScript(), finalJson2.getScript()).getBytes());
+
         }
         catch (IOException e) {
             e.printStackTrace();

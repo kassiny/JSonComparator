@@ -32,7 +32,7 @@ public class Parameters {
             this.params = params;
         }
 
-        public Common() {};
+        public Common() {}
 
         @Override
         public String toString() {
@@ -45,18 +45,18 @@ public class Parameters {
     public class Services {
 
         @JsonProperty("map")
-        Map<String, Service_name> sn = new HashMap<>();
+        Map<String, ServiceParameters> sn = new HashMap<>();
 
-        public Map<String, Service_name> getSn() {
+        public Map<String, ServiceParameters> getSn() {
             return sn;
         }
 
         @JsonAnySetter
-        public void addService(String key, Service_name serviceName) {
+        public void addService(String key, ServiceParameters serviceName) {
             sn.put(key, serviceName);
         }
 
-        public void setSn(Map<String, Service_name> map) {
+        public void setSn(Map<String, ServiceParameters> map) {
             this.sn = map;
         }
 

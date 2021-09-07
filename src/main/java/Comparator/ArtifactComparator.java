@@ -44,12 +44,16 @@ public class ArtifactComparator {
 
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("Service name"),
-                    new Element("th").appendText(mvn.getService_name().get()).attr("style", "color:" + color)
+                    new Element("th").appendText(
+                            mvn.getService_name().isPresent()? mvn.getService_name().get(): "null").
+                                attr("style", "color:" + color)
             ))));
 
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("classifier"),
-                    new Element("th").appendText(mvn.getClassifier().get()).attr("style", "color: " + color)
+                    new Element("th").appendText(
+                            mvn.getClassifier().isPresent()? mvn.getClassifier().get(): "null").
+                                attr("style", "color: " + color)
             ))));
 
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(

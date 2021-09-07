@@ -7,8 +7,6 @@ import java.util.Optional;
 public class V2 {
     MetaData metadata;
     Service[] services;
-    // Object[] artifacts;
-    // Map<ArtifactMvn, ArtifactFile[]> artifacts;
     Artifact[] artifacts;
     Script[] script;
     Rpm rpm;

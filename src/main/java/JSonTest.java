@@ -57,8 +57,11 @@ public class JSonTest {
             FileOutputStream artRes = new FileOutputStream("sefultArtifacts.html");
             artRes.write(ArtifactComparator.compare(finalJson1.getArtifacts(), finalJson2.getArtifacts()).getBytes());
 
-            FileOutputStream scrpt = new FileOutputStream("ScriptResult.html");
-            scrpt.write(ScriptComparator.compare(finalJson1.getScript(), finalJson2.getScript()).getBytes());
+            FileOutputStream script = new FileOutputStream("ScriptResult.html");
+            script.write(ScriptComparator.compare(finalJson1.getScript(), finalJson2.getScript()).getBytes());
+
+            FileOutputStream paramRes = new FileOutputStream("ParamsRsult.html");
+            paramRes.write(ParametersComparator.compare(finalJson1.getParameters(), finalJson2.getParameters()).getBytes());
 
         }
         catch (IOException e) {

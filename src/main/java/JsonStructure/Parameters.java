@@ -45,18 +45,18 @@ public class Parameters {
     public class Services {
 
         @JsonProperty("map")
-        Map<String, ServiceParameters> sn = new HashMap<>();
+        Map<String, JsonStructure.Common> sn = new HashMap<>();
 
-        public Map<String, ServiceParameters> getSn() {
+        public Map<String, JsonStructure.Common> getSn() {
             return sn;
         }
 
         @JsonAnySetter
-        public void addService(String key, ServiceParameters serviceName) {
+        public void addService(String key, JsonStructure.Common serviceName) {
             sn.put(key, serviceName);
         }
 
-        public void setSn(Map<String, ServiceParameters> map) {
+        public void setSn(Map<String, JsonStructure.Common> map) {
             this.sn = map;
         }
 

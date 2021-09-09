@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ServiceParameters {
+public class Common {
 
     Map<String, String> params = new HashMap<>();
 
@@ -14,7 +14,7 @@ public class ServiceParameters {
         return params;
     }
 
-    public ServiceParameters() {
+    public Common() {
     }
 
     public void setParams(Map<String, String> params) {

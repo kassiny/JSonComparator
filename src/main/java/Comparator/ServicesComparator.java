@@ -58,7 +58,7 @@ public class ServicesComparator {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("service_name"),
                     new Element("th").appendText(""),
-                    new Element("th").appendText(service.getService_name().get()).
+                    new Element("th").appendText(service.getService_name().isPresent()?service.getService_name().get(): "null").
                             attr("style", "color:" + color)
 
             ))));
@@ -66,7 +66,7 @@ public class ServicesComparator {
         else {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("service_name"),
-                    new Element("th").appendText(service.getService_name().get()).
+                    new Element("th").appendText(service.getService_name().isPresent()?service.getService_name().get(): "null").
                             attr("style", "color:" + color)
 
             ))));
@@ -75,14 +75,14 @@ public class ServicesComparator {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("artifact_type"),
                     new Element("th").appendText(""),
-                    new Element("th").appendText(service.getArtifact_type().get()).
+                    new Element("th").appendText(service.getArtifact_type().isPresent()? service.getArtifact_type().get(): "null").
                             attr("style", "color:" + color)
             ))));
         }
         else {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("artifact_type"),
-                    new Element("th").appendText(service.getArtifact_type().get()).
+                    new Element("th").appendText(service.getArtifact_type().isPresent()? service.getArtifact_type().get(): "null").
                             attr("style", "color:" + color)
             ))));
         }
@@ -139,14 +139,14 @@ public class ServicesComparator {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("force"),
                     new Element("th").appendText(""),
-                    new Element("th").appendText(service.getForce().get().toString()).
+                    new Element("th").appendText(service.getForce().isPresent()?service.getForce().get().toString(): "null").
                             attr("style", "color:" + color)
             ))));
         }
         else {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("force"),
-                    new Element("th").appendText(service.getForce().get().toString()).
+                    new Element("th").appendText(service.getForce().isPresent()?service.getForce().get().toString(): "null").
                             attr("style", "color:" + color)
             ))));
         }
@@ -155,14 +155,14 @@ public class ServicesComparator {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("github_repository"),
                     new Element("th").appendText(""),
-                    new Element("th").appendText(service.getGithub_repository().get()).
+                    new Element("th").appendText(service.getGithub_repository().isPresent()? service.getGithub_repository().get(): "null").
                             attr("style", "color:" + color)
             ))));
         }
         else {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("github_repository"),
-                    new Element("th").appendText(service.getGithub_repository().get()).
+                    new Element("th").appendText(service.getGithub_repository().isPresent()? service.getGithub_repository().get(): "null").
                             attr("style", "color:" + color)
             ))));
         }
@@ -170,7 +170,7 @@ public class ServicesComparator {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("github_branch"),
                     new Element("th").appendText(""),
-                    new Element("th").appendText(service.getGithub_branch().get()).
+                    new Element("th").appendText(service.getGithub_branch().isPresent()? service.getGithub_branch().get(): "null").
                             attr("style", "color:" + color)
             ))));
         }
@@ -178,7 +178,7 @@ public class ServicesComparator {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("github_branch"),
 
-                    new Element("th").appendText(service.getGithub_branch().get()).
+                    new Element("th").appendText(service.getGithub_hash().isPresent()? service.getGithub_branch().get(): "null").
                             attr("style", "color:" + color)
             ))));
         }
@@ -187,7 +187,7 @@ public class ServicesComparator {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("github_hash"),
                     new Element("th").appendText(""),
-                    new Element("th").appendText(service.getGithub_hash().get()).
+                    new Element("th").appendText(service.getGithub_hash().isPresent()? service.getGithub_hash().get(): "null").
                             attr("style", "color:" + color)
             ))));
         }
@@ -195,7 +195,7 @@ public class ServicesComparator {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("github_hash"),
 
-                    new Element("th").appendText(service.getGithub_hash().get()).
+                    new Element("th").appendText(service.getGithub_hash().isPresent()? service.getGithub_hash().get(): "null").
                             attr("style", "color:" + color)
             ))));
         }

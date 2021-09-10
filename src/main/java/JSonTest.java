@@ -1,7 +1,6 @@
 import JsonStructure.*;
 import Comparator.*;
 import com.fasterxml.jackson.databind.*;
-import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.jsontype.NamedType;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
@@ -31,13 +30,13 @@ public class JSonTest {
         Hashes hashes;
         MetaData metaData1 = null;
         MetaData metaData2 = null;
-        V2 finalJson1 = null;
-        V2 finalJson2 = null;
+        JsonV2 finalJson1 = null;
+        JsonV2 finalJson2 = null;
         try {
             // metaData1 = objectMapper.readValue(new File(args[0]), MetaData.class);
             // metaData2 = objectMapper.readValue(new File(args[1]), MetaData.class);
-            finalJson1 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\v2_json_sample.json"), V2.class);
-            finalJson2 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\v2_json_sample2.json"), V2.class);
+            finalJson1 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\v2_json_sample.json"), JsonV2.class);
+            finalJson2 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\v2_json_sample2.json"), JsonV2.class);
             // metaData1 = objectMapper.readValue(new File(System.getProperty("metaData1")), JsonStructure.MetaData.class);
              metaData1 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData1.json"), JsonStructure.MetaData.class);
             metaData2 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData2.json"), JsonStructure.MetaData.class);
@@ -62,6 +61,9 @@ public class JSonTest {
 
             FileOutputStream paramRes = new FileOutputStream("ParamsRsult.html");
             paramRes.write(ParametersComparator.compare(finalJson1.getParameters(), finalJson2.getParameters()).getBytes());
+
+            FileOutputStream finalRes = new FileOutputStream("finalResult.html");
+            finalRes.write(JsonV2Comparator.compare(finalJson1, finalJson2).getBytes());
 
         }
         catch (IOException e) {

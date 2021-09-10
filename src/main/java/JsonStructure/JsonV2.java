@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
-public class V2 {
+public class JsonV2 {
     MetaData metadata;
     Service[] services;
     Artifact[] artifacts;

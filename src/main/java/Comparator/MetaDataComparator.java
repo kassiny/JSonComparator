@@ -29,7 +29,7 @@ public class MetaDataComparator {
 
         Document document = Jsoup.parse("");
 
-        document.body().appendElement("table");
+        document.body().appendElement("table").attr("border", "1px solid black");
         document.body().selectFirst("table").appendElement("tr").append("<th>Element</th><th>Previous</th><th>Current</th>");
         document.body().selectFirst("table").appendElement("tr").appendElement("th").
                 appendText("MetaData").attr("text-align","center");

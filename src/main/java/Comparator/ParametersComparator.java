@@ -18,7 +18,7 @@ public class ParametersComparator {
         ArrayList<Node> arrayList = new ArrayList<>();
         String equal = "black";
         String diff = "goldenRod";
-        String added = "Green";
+        String added = "LimeGreen";
         String deleted = "red";
 
         for (String key: map1.keySet()) {

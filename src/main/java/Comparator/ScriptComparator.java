@@ -13,7 +13,7 @@ public class ScriptComparator {
 
     static ArrayList<Node> formATable(Script script, ChangeMode mode) {
         ArrayList<Node> res = new ArrayList<>();
-        String color = mode.equals(ChangeMode.DELETED)?"Red":"DarkGreen";
+        String color = mode.equals(ChangeMode.DELETED)?"Red":"LimeGreen";
 
         if (mode.equals(ChangeMode.DELETED)) {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(

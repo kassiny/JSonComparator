@@ -30,7 +30,7 @@ public class ServicesComparator {
         String color;
         switch (mode) {
             case DELETED: color = "red"; break;
-            case ADDED: color = "DarkGreen"; break;
+            case ADDED: color = "LimeGreen"; break;
             default: color = "black";
         }
 

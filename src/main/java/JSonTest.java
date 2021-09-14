@@ -1,6 +1,7 @@
 import JsonStructure.*;
 import Comparator.*;
 import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.fasterxml.jackson.databind.jsontype.NamedType;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
@@ -39,13 +40,10 @@ public class JSonTest {
             finalJson2 = objectMapper.readValue(new File(args[1]), JsonV2.class);
 
             // metaData1 = objectMapper.readValue(new File(System.getProperty("metaData1")), JsonStructure.MetaData.class);
-            metaData1 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData1.json"), JsonStructure.MetaData.class);
-            metaData2 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData2.json"), JsonStructure.MetaData.class);
+            // metaData1 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData1.json"), JsonStructure.MetaData.class);
+            //metaData2 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData2.json"), JsonStructure.MetaData.class);
 
             System.out.println(finalJson1);
-            FileOutputStream comResult = new FileOutputStream("resultMetaData.html");
-            comResult.write(MetaDataComparator.compare(metaData1, metaData2).getBytes());
-            comResult.close();
 
             FileOutputStream serRes = new FileOutputStream("resultServices.html");
             serRes.write(ServicesComparator.compare(finalJson1.getServices(), finalJson2.getServices()).getBytes());
@@ -53,21 +51,33 @@ public class JSonTest {
 
             FileOutputStream artRes = new FileOutputStream("sefultArtifacts.html");
             artRes.write(ArtifactComparator.compare(finalJson1.getArtifacts(), finalJson2.getArtifacts()).getBytes());
+            artRes.close();
 
             FileOutputStream script = new FileOutputStream("ScriptResult.html");
             script.write(ScriptComparator.compare(finalJson1.getScript(), finalJson2.getScript()).getBytes());
+            script.close();
 
             FileOutputStream paramRes = new FileOutputStream("ParamsRsult.html");
             paramRes.write(ParametersComparator.compare(finalJson1.getParameters(), finalJson2.getParameters()).getBytes());
+            paramRes.close();
+
+
 
             FileOutputStream finalRes = new FileOutputStream("finalResult.html");
             finalRes.write(JsonV2Comparator.compare(finalJson1, finalJson2).getBytes());
+            finalRes.close();
 
-            System.out.println("the comparisson result is in finalResult.html");
+            System.out.println("the comparison result is in finalResult.html");
 
+        }
+        catch (JsonMappingException e) {
+            System.out.println("Wrong data structure " + e.getMessage());
         }
         catch (IOException | NullPointerException e) {
             e.printStackTrace();
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("A mandatory field is absent");
         }
     }
 

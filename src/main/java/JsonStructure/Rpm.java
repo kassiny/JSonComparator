@@ -12,7 +12,9 @@ public class Rpm {
     @JsonProperty("service-short-name")
     Optional<String> service_short_name;
 
-
+    public Rpm() {
+        service_short_name = Optional.empty();
+    }
     public String getUrl() {
         return url;
     }

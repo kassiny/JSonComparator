@@ -17,7 +17,7 @@ public class ScriptComparator {
 
         if (mode.equals(ChangeMode.DELETED)) {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                    new Element("th").appendText("service short name"),
+                    new Element("th").appendText("service short name").attr("style", JsonV2Comparator.fistColumnWidth),
                     new Element("th").appendText(script.getService_short_name().isPresent() ?
                             script.getService_short_name().get() : "null").attr("style", "color:" + color)
             ))));
@@ -114,7 +114,7 @@ public class ScriptComparator {
         String eq = "black";
         String diff = "GoldenRod";
         res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                new Element("th").appendText("service short name"),
+                new Element("th").appendText("service short name").attr("style", JsonV2Comparator.fistColumnWidth),
                 new Element("th").appendText(script1.getService_short_name().isPresent()?
                         script1.getService_short_name().get():"null").attr("style","color:" +
                         (script1.getService_short_name().equals(script2.getService_short_name())?eq:diff)),
@@ -172,7 +172,8 @@ public class ScriptComparator {
     }
     public static String compare (Script[] s1, Script[] s2) {
         Document document = Jsoup.parse("");
-        document.body().appendElement("table").attr("border", "1px solid black");
+        document.body().appendElement("table").attr("border", "1px solid black")
+                .attr("style", JsonV2Comparator.width);
 
         boolean[] foundIn2 = new boolean[s2.length];
         for(boolean b: foundIn2) {

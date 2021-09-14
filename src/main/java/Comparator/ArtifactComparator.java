@@ -20,14 +20,14 @@ public class ArtifactComparator {
         ArrayList<Node> res = new ArrayList<>();
         String color;
         switch (mode) {
-            case ADDED: color = "DarkGreen"; break;
+            case ADDED: color = JsonV2Comparator.added; break;
             case DELETED: color = "Red"; break;
             default: color = "black";
         }
 
         if (mode.equals(ChangeMode.DELETED)) {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                    new Element("th").appendText("GroupID"),
+                    new Element("th").appendText("GroupID").attr("style", JsonV2Comparator.fistColumnWidth),
                     new Element("th").appendText(mvn.getGroupId()).attr("style", "color:" + color)
                             .attr("padding-left", "1px")
             ))));
@@ -80,7 +80,7 @@ public class ArtifactComparator {
         }
         else {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                    new Element("th").appendText("GroupID"),
+                    new Element("th").appendText("GroupID").attr("style", JsonV2Comparator.fistColumnWidth),
                     new Element("th").appendText(""),
                     new Element("th").appendText(mvn.getGroupId()).attr("style", "color:" + color)
                             .attr("padding-left", "1px")
@@ -146,7 +146,7 @@ public class ArtifactComparator {
         String equal = "black";
         String diff = "GoldenRod";
         res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                new Element("th").appendText("GroupID"),
+                new Element("th").appendText("GroupID").attr("style", JsonV2Comparator.fistColumnWidth),
                 new Element("th").appendText(mvn1.getGroupId()).attr("style", "color:" +
                         (mvn1.getGroupId().equals(mvn2.getGroupId())?equal:diff)),
                 new Element("th").appendText(mvn2.getGroupId()).attr("style", "color" +
@@ -310,7 +310,7 @@ public class ArtifactComparator {
 
     static ArrayList<Node> formATable (Artifact artifact, ChangeMode mode) {
          ArrayList<Node> res = new ArrayList<>();
-         String color = mode.equals(ChangeMode.ADDED)?"DarkGreen":"Red";
+         String color = mode.equals(ChangeMode.ADDED)?JsonV2Comparator.added:"Red";
 
          if (artifact.getArtifactType().equals(ArtifactType.FILE.value) ) {
             ArtifactFile ar = (ArtifactFile) artifact;
@@ -383,7 +383,8 @@ public class ArtifactComparator {
 
     public static String compare (Artifact[] artifacts1, Artifact[] artifacts2 ) {
         Document document = Jsoup.parse("");
-        document.body().appendElement("table").attr("border", "1px solid black");
+        document.body().appendElement("table").attr("border", "1px solid black")
+                .attr("style", JsonV2Comparator.width);
 
         boolean[] foundIn2 = new boolean[artifacts2.length];
         for (boolean b: foundIn2) {

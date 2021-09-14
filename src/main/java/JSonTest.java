@@ -13,7 +13,7 @@ import java.io.IOException;
 public class JSonTest {
     public static void main(String[] args) {
         if (args.length<2) {
-            System.out.println("Please, specify the metada files using DmetaData1 and Dmetadata2 commands");
+            System.out.println("Please, specify the json files");
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -33,18 +33,16 @@ public class JSonTest {
         JsonV2 finalJson1 = null;
         JsonV2 finalJson2 = null;
         try {
-            // metaData1 = objectMapper.readValue(new File(args[0]), MetaData.class);
-            // metaData2 = objectMapper.readValue(new File(args[1]), MetaData.class);
-            finalJson1 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\v2_json_sample.json"), JsonV2.class);
-            finalJson2 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\v2_json_sample2.json"), JsonV2.class);
-            // metaData1 = objectMapper.readValue(new File(System.getProperty("metaData1")), JsonStructure.MetaData.class);
-             metaData1 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData1.json"), JsonStructure.MetaData.class);
-            metaData2 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData2.json"), JsonStructure.MetaData.class);
-            // System.out.println(metaData1);
-           // System.out.println(metaData2);
-            System.out.println(finalJson1);
-            System.out.println(MetaDataComparator.compare(metaData1, metaData2));
+            //finalJson1 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\v2_json_sample.json"), JsonV2.class);
+            //finalJson2 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\v2_json_sample2.json"), JsonV2.class);
+            finalJson1 = objectMapper.readValue(new File(args[0]), JsonV2.class);
+            finalJson2 = objectMapper.readValue(new File(args[1]), JsonV2.class);
 
+            // metaData1 = objectMapper.readValue(new File(System.getProperty("metaData1")), JsonStructure.MetaData.class);
+            metaData1 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData1.json"), JsonStructure.MetaData.class);
+            metaData2 = objectMapper.readValue(new File("C:\\Users\\telega\\IdeaProjects\\Github\\JsonComparator\\MetaData2.json"), JsonStructure.MetaData.class);
+
+            System.out.println(finalJson1);
             FileOutputStream comResult = new FileOutputStream("resultMetaData.html");
             comResult.write(MetaDataComparator.compare(metaData1, metaData2).getBytes());
             comResult.close();
@@ -65,8 +63,10 @@ public class JSonTest {
             FileOutputStream finalRes = new FileOutputStream("finalResult.html");
             finalRes.write(JsonV2Comparator.compare(finalJson1, finalJson2).getBytes());
 
+            System.out.println("the comparisson result is in finalResult.html");
+
         }
-        catch (IOException e) {
+        catch (IOException | NullPointerException e) {
             e.printStackTrace();
         }
     }

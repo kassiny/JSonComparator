@@ -18,17 +18,17 @@ public class ParametersComparator {
         ArrayList<Node> arrayList = new ArrayList<>();
         String equal = "black";
         String diff = "goldenRod";
-        String added = "LimeGreen";
-        String deleted = "red";
+        String added = JsonV2Comparator.added;
+        String deleted = JsonV2Comparator.deleted;
 
         for (String key: map1.keySet()) {
             if (map2.containsKey(key)) {
                 arrayList.add(new Element("tr").
                         appendChildren(new ArrayList<>(Arrays.asList(
-                                new Element("th").appendText(key),
+                                new Element("th").appendText(key).attr("style", JsonV2Comparator.fistColumnWidth),
                                 new Element("th").appendText(map1.get(key)).
                                         attr("style","color:" +
-                                                (map1.get(key).equals(map2.get(key))?equal:diff)),
+                                                (map1.get(key).equals(map2.get(key))?equal:diff)).attr("style", "width:42.5%"),
                                 new Element("th").appendText(map2.get(key)).
                                         attr("style","color:" +
                                                 (map1.get(key).equals(map2.get(key))?equal:diff))
@@ -36,7 +36,7 @@ public class ParametersComparator {
             }
             else {
                 arrayList.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                        new Element("th").appendText(key),
+                        new Element("th").appendText(key).attr("style", JsonV2Comparator.fistColumnWidth),
                         new Element("th").appendText(map1.get(key)).attr("style", "color:" + deleted)
                 ))));
             }
@@ -44,7 +44,7 @@ public class ParametersComparator {
         for (String key: map2.keySet()) {
             if (!map1.containsKey(key)) {
                 arrayList.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                        new Element("th").appendText(key),
+                        new Element("th").appendText(key).attr("style", JsonV2Comparator.fistColumnWidth),
                         new Element("th").appendText(""),
                         new Element("th").appendText(map2.get(key)).attr("style", "color:" + added)
                 ))));
@@ -55,11 +55,11 @@ public class ParametersComparator {
 
     static ArrayList<Node> formATable(Map<String, String> map, ChangeMode mode) {
         ArrayList<Node> result = new ArrayList<>();
-        String color = mode.equals(ChangeMode.ADDED)?"Green":"Red";
+        String color = mode.equals(ChangeMode.ADDED)?JsonV2Comparator.added: JsonV2Comparator.deleted;
         if (mode.equals(ChangeMode.ADDED)) {
             for (String key: map.keySet()) {
                 result.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                        new Element("th").appendText(key),
+                        new Element("th").appendText(key).attr("style", JsonV2Comparator.fistColumnWidth),
                         new Element("th").appendText(""),
                         new Element("th").appendText(map.get(key)).attr("style", "color:" + color)
                 ))));
@@ -68,7 +68,7 @@ public class ParametersComparator {
         else if (mode.equals(ChangeMode.DELETED)) {
             for (String key: map.keySet()) {
                 result.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                        new Element("th").appendText(key),
+                        new Element("th").appendText(key).attr("style", JsonV2Comparator.fistColumnWidth),
                         new Element("th").appendText(""),
                         new Element("th").appendText(map.get(key)).attr("style", "color:" + color)
                 ))));
@@ -79,7 +79,8 @@ public class ParametersComparator {
 
     public static String compare (Parameters p1, Parameters p2) {
         Document document = Jsoup.parse("");
-        document.body().appendElement("table").attr("border", "1px solid black");
+        document.body().appendElement("table").attr("border", "1px solid black")
+                .attr("style", JsonV2Comparator.width);
         document.body().selectFirst("table").appendElement("tr").appendElement("th").appendText("Common");
         document.body().selectFirst("table").appendChildren(formATable(p1.getCommon().getParams(), p2.getCommon().getParams()));
 

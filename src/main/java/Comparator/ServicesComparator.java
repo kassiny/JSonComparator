@@ -36,7 +36,7 @@ public class ServicesComparator {
 
         if (mode.equals(ChangeMode.DELETED)) {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                    new Element("th").appendText("service_short_name"),
+                    new Element("th").appendText("service_short_name").attr("style", JsonV2Comparator.fistColumnWidth),
                     new Element("th").appendText(service.getService_short_name()).
                             attr("style",
                                     "color: " + color)
@@ -246,7 +246,7 @@ public class ServicesComparator {
 
         //if (change == ColorChange.YELLOW)
         res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                new Element("th").appendText("service_short_name"),
+                new Element("th").appendText("service_short_name").attr("style", JsonV2Comparator.fistColumnWidth),
                 new Element("th").appendText(service1.getService_short_name()).
                         attr("style",
                                 "color: " + (service1.getService_short_name().equals(service2.getService_short_name())? "black":"GoldenRod")),
@@ -257,20 +257,20 @@ public class ServicesComparator {
 
         res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                 new Element("th").appendText("service_name"),
-                new Element("th").appendText(service1.getService_name().get()).
+                new Element("th").appendText(service1.getService_name().isPresent()? service1.getService_name().get(): "null").
                         attr("style", "color:" +
                                         (service1.getService_name().equals(service2.getService_name())?"black":"GoldenRod")),
-                new Element("th").appendText(service2.getService_name().get()).
+                new Element("th").appendText(service2.getService_name().isPresent()? service2.getService_name().get(): "null").
                         attr("style", "color:" +
                                 (service1.getService_name().equals(service2.getService_name())?"black":"GoldenRod"))
         ))));
 
         res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                 new Element("th").appendText("artifact_type"),
-                new Element("th").appendText(service1.getArtifact_type().get()).
+                new Element("th").appendText(service1.getArtifact_type().isPresent()? service1.getArtifact_type().get(): "null").
                         attr("style", "color:" +
                                 (service1.getArtifact_type().equals(service2.getArtifact_type())?"black":"GoldenRod")),
-                new Element("th").appendText(service2.getArtifact_type().get()).
+                new Element("th").appendText(service2.getArtifact_type().isPresent()? service2.getArtifact_type().get():"null").
                         attr("style", "color:" +
                                 (service1.getArtifact_type().equals(service2.getArtifact_type())?"black":"GoldenRod"))
         ))));
@@ -306,40 +306,40 @@ public class ServicesComparator {
 
         res.add(new Element("tr").appendChildren( new ArrayList<>(Arrays.asList(
                 new Element("th").appendText("force"),
-                new Element("th").appendText(service1.getForce().get().toString()).
+                new Element("th").appendText(service1.getForce().isPresent()? service1.getForce().get().toString(): "null").
                         attr("style", "color:" +
                                 (service1.getForce().equals(service2.getForce())?"black":"GoldenRod")),
-                new Element("th").appendText(service2.getForce().get().toString()).
+                new Element("th").appendText(service2.getForce().isPresent()? service2.getForce().get().toString(): "null").
                         attr("style", "color:" +
                                 (service1.getForce().equals(service2.getForce())?"black":"GoldenRod"))
         ))));
 
         res.add(new Element("tr").appendChildren( new ArrayList<>(Arrays.asList(
                 new Element("th").appendText("github_repository"),
-                new Element("th").appendText(service1.getGithub_repository().get()).
+                new Element("th").appendText(service1.getGithub_repository().isPresent()? service1.getGithub_repository().get(): "null").
                         attr("style", "color:" +
                                 (service1.getGithub_repository().equals(service2.getGithub_repository())?"black":"GoldenRod")),
-                new Element("th").appendText(service2.getGithub_repository().get()).
+                new Element("th").appendText(service2.getGithub_repository().isPresent()? service2.getGithub_repository().get(): "null").
                         attr("style", "color:" +
                                 (service1.getGithub_repository().equals(service2.getGithub_repository())?"black":"GoldenRod"))
         ))));
 
         res.add(new Element("tr").appendChildren( new ArrayList<>( Arrays.asList(
                 new Element("th").appendText("github_branch"),
-                new Element("th").appendText(service1.getGithub_branch().get()).
+                new Element("th").appendText(service1.getGithub_branch().isPresent()? service1.getGithub_branch().get(): "null").
                         attr("style", "color:" +
                                 (service1.getGithub_branch().equals(service2.getGithub_branch())?"black":"GoldenRod")),
-                new Element("th").appendText(service2.getGithub_branch().get()).
+                new Element("th").appendText(service2.getGithub_branch().isPresent()? service2.getGithub_branch().get(): "null").
                         attr("style", "color:" +
                                 (service1.getGithub_branch().equals(service2.getGithub_branch())?"black":"GoldenRod"))
         ))));
 
         res.add(new Element("tr").appendChildren( new ArrayList<>(Arrays.asList(
                 new Element("th").appendText("github_hash"),
-                new Element("th").appendText(service1.getGithub_hash().get()).
+                new Element("th").appendText(service1.getGithub_hash().isPresent()? service1.getGithub_hash().get(): "null").
                         attr("style", "color:" +
                                 (service1.getGithub_hash().equals(service2.getGithub_hash())?"black":"GoldenRod")),
-                new Element("th").appendText(service2.getGithub_hash().get()).
+                new Element("th").appendText(service2.getGithub_hash().isPresent()? service2.getGithub_hash().get(): "null").
                         attr("style", "color:" +
                                 (service1.getGithub_hash().equals(service2.getGithub_hash())?"black":"GoldenRod"))
         ))));
@@ -373,7 +373,8 @@ public class ServicesComparator {
     public static String compare (Service[] s1, Service[] s2) {
          Document document = Jsoup.parse("");
          document.body().appendElement("table").appendElement("tr").appendElement("th").appendText("Services");
-         document.body().selectFirst("table").attr("border", "1px solid black");
+         document.body().selectFirst("table").attr("border", "1px solid black")
+                 .attr("style", JsonV2Comparator.width);
 
          boolean [] foundInSecond = new boolean[s2.length] ;
         for (boolean b: foundInSecond

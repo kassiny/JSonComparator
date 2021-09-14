@@ -1,9 +1,9 @@
 package JsonStructure;
 
-import JsonStructure.Hashes;
-import com.fasterxml.jackson.annotation.JsonProperty;
+        import JsonStructure.Hashes;
+        import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Optional;
+        import java.util.Optional;
 
 public class Script {
     @JsonProperty("service-short-name")
@@ -15,6 +15,12 @@ public class Script {
     String script_name;
     Hashes hashes;
     String url;
+
+    public Script() {
+        service_short_name = Optional.empty();
+        start_point = Optional.empty();
+        end_point = Optional.empty();
+    }
 
     public Optional<String> getService_short_name() {
         return service_short_name;

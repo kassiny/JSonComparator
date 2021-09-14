@@ -17,7 +17,7 @@ public class RpmComparator {
         String diff = "GoldenRod";
 
         res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
-                new Element("th").appendText("url"),
+                new Element("th").appendText("url").attr("style", JsonV2Comparator.fistColumnWidth),
                 new Element("th").appendText(rpm1.getUrl()).attr("style", "color:" +
                         (rpm1.getUrl().equals(rpm2.getUrl())?equal:diff)),
                 new Element("th").appendText(rpm2.getUrl()).attr("style", "color:" +
@@ -61,8 +61,9 @@ public class RpmComparator {
 
     public static String compare (Rpm rpm1, Rpm rpm2) {
         Document document = Jsoup.parse("");
-        document.body().appendElement("table").attr("border", "1px solid black").
-                appendChildren(formATable(rpm1,rpm2));
+        document.body().appendElement("table").attr("border", "1px solid black")
+                .attr("style", JsonV2Comparator.width).
+                    appendChildren(formATable(rpm1,rpm2));
         return document.outerHtml();
     }
 }

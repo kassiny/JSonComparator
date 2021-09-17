@@ -138,6 +138,7 @@ public class ArtifactComparator {
             ))));
         }
 
+        res.add(new Element("tr").appendElement("td").appendText("--------").attr("style", "color: white"));
         return res;
     }
 
@@ -221,6 +222,7 @@ public class ArtifactComparator {
                 new Element("th").appendText(mvn2.getHashes().getSha256()).attr("style", "color:" +
                         (mvn1.getHashes().getSha256().equals(mvn2.getHashes().getSha256())?equal:diff))
         ))));
+        res.add(new Element("tr").appendElement("td").appendText("--------").attr("style", "color: white"));
 
         return res;
     }
@@ -305,6 +307,7 @@ public class ArtifactComparator {
                 }
             }
         }
+        res.add(new Element("tr").appendElement("td").appendText(" ").attr("style", "color: white").attr("style", "height: 60px"));
         return res;
     }
 
@@ -378,12 +381,13 @@ public class ArtifactComparator {
             }
 
         }
+        res.add(new Element("tr").appendElement("td").appendText(" ").attr("style", "color: white").attr("style", "height: 60px"));
         return res;
     }
 
     public static String compare (Artifact[] artifacts1, Artifact[] artifacts2 ) {
         Document document = Jsoup.parse("");
-        document.body().appendElement("table").attr("border", "1px solid black")
+        document.body().appendElement("table").attr("style", " border: 1px solid black")
                 .attr("style", JsonV2Comparator.width);
 
         boolean[] foundIn2 = new boolean[artifacts2.length];

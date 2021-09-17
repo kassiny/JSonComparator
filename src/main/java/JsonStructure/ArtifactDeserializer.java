@@ -29,7 +29,7 @@ public class ArtifactDeserializer extends StdDeserializer<Artifact> {
             return mapper.treeToValue(ArtifactNode, ArtifactMvn.class);
         }
         else if (ArtifactNode.has("file")) {
-            return mapper.treeToValue(ArtifactNode,ArtifactFile.class);
+            return mapper.treeToValue(ArtifactNode, ArtifactFile.class);
         }
         throw  new IllegalStateException("UnexepectedArtifactType : ");
         /*final ArtifactType artifactType = ArtifactType.fromValue(ArtifactNode.get("artifactType").asText());

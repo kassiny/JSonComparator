@@ -106,6 +106,7 @@ public class ScriptComparator {
                             "color:" + color)
             ))));
         }
+        res.add(new Element("tr").appendElement("td").appendText(" ").attr("style", "color: white").attr("style", "height: 60px"));
         return  res;
     }
 
@@ -168,11 +169,12 @@ public class ScriptComparator {
                 new Element("th").appendText(script2.getUrl()).attr("style",
                         "color:" + (script1.getUrl().equals(script2.getUrl())?eq: diff))
         ))));
+        res.add(new Element("tr").appendElement("td").appendText(" ").attr("style", "color: white").attr("style", "height: 60px"));
         return  res;
     }
     public static String compare (Script[] s1, Script[] s2) {
         Document document = Jsoup.parse("");
-        document.body().appendElement("table").attr("border", "1px solid black")
+        document.body().appendElement("table")
                 .attr("style", JsonV2Comparator.width);
 
         boolean[] foundIn2 = new boolean[s2.length];

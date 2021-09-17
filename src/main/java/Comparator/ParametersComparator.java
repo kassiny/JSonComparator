@@ -79,12 +79,21 @@ public class ParametersComparator {
 
     public static String compare (Parameters p1, Parameters p2) {
         Document document = Jsoup.parse("");
-        document.body().appendElement("table").attr("border", "1px solid black")
+        document.body().appendElement("table")
                 .attr("style", JsonV2Comparator.width);
-        document.body().selectFirst("table").appendElement("tr").appendElement("th").appendText("Common");
+        document.body().selectFirst("table").appendElement("tr").appendElement("td").appendElement("p").appendElement("b")
+                .appendText("Common");
         document.body().selectFirst("table").appendChildren(formATable(p1.getCommon().getParams(), p2.getCommon().getParams()));
 
-        document.body().selectFirst("table").appendElement("tr").appendElement("th").appendText("services");
+        document.body().selectFirst("table").appendElement("tr").appendElement("td").appendText(" ").
+                attr("style", "color: white").attr("style", "height: 20px");
+
+        document.body().selectFirst("table").appendElement("tr").appendElement("td").appendText(" ").
+                attr("style", "color: white").attr("style", "height: 20px");
+
+        document.body().selectFirst("table").appendElement("tr").appendElement("td").appendElement("p").appendElement("b").
+                appendText("services");
+
         for (String key: p1.getServices().getSn().keySet()) {
             if (p2.getServices().getSn().containsKey(key)) {
                 document.body().selectFirst("table").appendElement("tr").appendElement("th").appendText(key);

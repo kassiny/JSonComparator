@@ -26,7 +26,7 @@ public class ServicesComparator {
     static ArrayList<Node> formATable(Service service, ChangeMode mode) {
         ArrayList<Node> res = new ArrayList<>();
 
-        res.add(new Element("tr").appendElement("th").appendText("Service"));
+        //res.add(new Element("tr").appendElement("th").appendText("Service"));
         String color;
         switch (mode) {
             case DELETED: color = "red"; break;
@@ -234,7 +234,7 @@ public class ServicesComparator {
             ))));
         }
 
-        res.add(new Element("tr").appendText("  "));
+        res.add(new Element("tr").appendElement("td").appendText("--------").attr("style", "color:white"));
 
         return res;
     }
@@ -242,7 +242,7 @@ public class ServicesComparator {
     static ArrayList<Node> formATable (Service service1, Service service2) {
         ArrayList<Node> res = new ArrayList<>();
 
-        res.add(new Element("tr").appendElement("th").appendText("Service"));
+        //res.add(new Element("tr").appendElement("th").appendText("Service"));
 
         //if (change == ColorChange.YELLOW)
         res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
@@ -366,14 +366,14 @@ public class ServicesComparator {
                                 (service1.getHashes().getSha256().equals(service2.getHashes().getSha256())?"black":"GoldenRod"))
         ))));
 
-        res.add(new Element("tr").appendText("  "));
+        res.add(new Element("tr").appendElement("td").appendText("--------").attr("style", "color:white"));
 
         return res;
     }
     public static String compare (Service[] s1, Service[] s2) {
          Document document = Jsoup.parse("");
          document.body().appendElement("table").appendElement("tr").appendElement("th").appendText("Services");
-         document.body().selectFirst("table").attr("border", "1px solid black")
+         document.body().selectFirst("table").attr("style", "border: 1px solid black")
                  .attr("style", JsonV2Comparator.width);
 
          boolean [] foundInSecond = new boolean[s2.length] ;

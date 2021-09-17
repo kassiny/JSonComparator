@@ -26,7 +26,7 @@ public class MetaDataComparator {
     public static String compare (MetaData m1, MetaData m2) {
         Document document = Jsoup.parse("");
 
-        document.body().appendElement("table").attr("border", "1px solid black").
+        document.body().appendElement("table").
                 attr("style", JsonV2Comparator.width);
         document.body().selectFirst("table").appendElement("tr").append("<th style = width:15%>Element</th><th>Previous</th><th>Current</th>");
         document.body().selectFirst("table").appendElement("tr").appendElement("th").

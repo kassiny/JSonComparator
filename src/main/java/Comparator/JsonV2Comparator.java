@@ -13,8 +13,11 @@ public class JsonV2Comparator {
 
     public static String compare (JsonV2 json1, JsonV2 json2) {
         Document document = Jsoup.parse("");
-        document.body().appendElement("table").attr("border", "1px solid black").
+        document.body().appendElement("table").
                 attr("style", "width: 100%, font-size: 150%");
+
+        document.body().selectFirst("table").appendElement("tr").appendElement("th").appendElement("p").appendElement("b").appendText("MetaData")
+                .attr("style", fontSize);
         Document metaDataHtml = Jsoup.parse(MetaDataComparator.compare(json1.getMetadata(), json2.getMetadata()));
         //document.body().selectFirst("table").appendChildren(metaDataHtml.body().selectFirst("table").children());
         document.body().selectFirst("table").appendChild(metaDataHtml.body().selectFirst("table"));

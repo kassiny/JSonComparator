@@ -61,7 +61,7 @@ public class RpmComparator {
 
     public static String compare (Rpm rpm1, Rpm rpm2) {
         Document document = Jsoup.parse("");
-        document.body().appendElement("table").attr("border", "1px solid black")
+        document.body().appendElement("table")
                 .attr("style", JsonV2Comparator.width).
                     appendChildren(formATable(rpm1,rpm2));
         return document.outerHtml();

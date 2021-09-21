@@ -8,8 +8,10 @@ import java.util.Optional;
 
 public class Service {
     @JsonProperty("service-short-name")
+            //!!!!!!!!!!!!!!!!!!!!!!1
     String service_short_name;
     Optional<String> service_name;
+
     Optional<String> artifact_type;
     String docker_registry;
     String docker_image_name;

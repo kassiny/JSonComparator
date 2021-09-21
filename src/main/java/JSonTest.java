@@ -57,24 +57,8 @@ public class JSonTest {
 
             //System.out.println(finalJson1);
 
-            FileOutputStream serRes = new FileOutputStream("resultServices.html");
-            serRes.write(ServicesComparator.compare(finalJson1.getServices(), finalJson2.getServices()).getBytes());
-            serRes.close();
-
-            FileOutputStream artRes = new FileOutputStream("sefultArtifacts.html");
-            artRes.write(ArtifactComparator.compare(finalJson1.getArtifacts(), finalJson2.getArtifacts()).getBytes());
-            artRes.close();
-
-            FileOutputStream script = new FileOutputStream("ScriptResult.html");
+            FileOutputStream script = new FileOutputStream("Script.html");
             script.write(ScriptComparator.compare(finalJson1.getScript(), finalJson2.getScript()).getBytes());
-            script.close();
-
-            FileOutputStream paramRes = new FileOutputStream("ParamsRsult.html");
-            paramRes.write(ParametersComparator.compare(finalJson1.getParameters(), finalJson2.getParameters()).getBytes());
-            paramRes.close();
-
-
-
             FileOutputStream finalRes = new FileOutputStream("finalResult.html");
             finalRes.write(JsonV2Comparator.compare(finalJson1, finalJson2).getBytes());
             finalRes.close();

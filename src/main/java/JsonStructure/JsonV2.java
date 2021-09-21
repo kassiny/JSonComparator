@@ -9,7 +9,7 @@ public class JsonV2 {
     Service[] services;
     Artifact[] artifacts;
     Script[] script;
-    Rpm rpm;
+    Rpm [] rpm;
     Parameters parameters;
 
     public MetaData getMetadata() {
@@ -44,11 +44,11 @@ public class JsonV2 {
         this.script = script;
     }
 
-    public Rpm getRpm() {
+    public Rpm [] getRpm() {
         return rpm;
     }
 
-    public void setRpm(Rpm rpm) {
+    public void setRpm(Rpm [] rpm) {
         this.rpm = rpm;
     }
 

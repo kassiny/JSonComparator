@@ -196,7 +196,7 @@ public class ScriptComparator {
         }
         for (int i = 0; i < s2.length; i ++) {
             if (!foundIn2[i]) {
-                document.body().appendChildren(formATable(s2[i], ChangeMode.ADDED));
+                document.body().selectFirst("table").appendChildren(formATable(s2[i], ChangeMode.ADDED));
             }
         }
         return document.outerHtml();

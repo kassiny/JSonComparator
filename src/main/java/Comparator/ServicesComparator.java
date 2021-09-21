@@ -375,12 +375,11 @@ public class ServicesComparator {
          document.body().appendElement("table").appendElement("tr").appendElement("th").appendText("Services");
          document.body().selectFirst("table").attr("style", "border: 1px solid black")
                  .attr("style", JsonV2Comparator.width);
-
          boolean [] foundInSecond = new boolean[s2.length] ;
-        for (boolean b: foundInSecond
-             ) {
-            b = false;
-        }
+         for (boolean b: foundInSecond
+              ) {
+             b = false;
+         }
 
          for (Service ser1: s1) {
              boolean foundchanged = false;

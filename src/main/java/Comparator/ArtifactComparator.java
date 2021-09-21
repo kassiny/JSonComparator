@@ -222,8 +222,10 @@ public class ArtifactComparator {
                 new Element("th").appendText(mvn2.getHashes().getSha256()).attr("style", "color:" +
                         (mvn1.getHashes().getSha256().equals(mvn2.getHashes().getSha256())?equal:diff))
         ))));
-        res.add(new Element("tr").appendElement("td").appendText("--------").attr("style", "color: white"));
 
+        //res.add(new Element("tr").appendElement("td").appendText("--------").attr("style", "color: white"));
+        res.add(new Element("tr").appendElement("th").appendText(" ")
+                .attr("style", "color: white").attr("style", "height: 60px"));
         return res;
     }
 
@@ -238,6 +240,8 @@ public class ArtifactComparator {
 
             String equal = "black";
             String diff = "GoldenRod";
+
+            res.add( new Element("tr").appendElement("th").appendText("FILE").attr("style", "background-color: lightGray"));
 
             res.add( new Element("tr").appendChildren(new ArrayList<Node>( Arrays.asList(
                     new Element("th").appendText("Service name"),
@@ -272,6 +276,9 @@ public class ArtifactComparator {
         else if (artifact1.getArtifactType().equals(ArtifactType.MVN.toString())) {
             ArtifactMvn ar1 = (ArtifactMvn) artifact1;
             ArtifactMvn ar2 = (ArtifactMvn) artifact2;
+
+            res.add(new Element("tr").appendElement("th").appendText("MVN").attr("style", "background-color: lightGray"));
+
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("target repository"),
                     new Element("th").appendText(ar1.getTarget_repository()),
@@ -307,16 +314,21 @@ public class ArtifactComparator {
                 }
             }
         }
-        res.add(new Element("tr").appendElement("td").appendText(" ").attr("style", "color: white").attr("style", "height: 60px"));
+        /*res.add(new Element("tr").appendElement("td").appendText(" ").
+                attr("style", "color: white").attr("style", "height: 60px"));
+        */
+        res.add(new Element("tr").append("<td style=\"color: white\">--------</td>"));
         return res;
     }
 
     static ArrayList<Node> formATable (Artifact artifact, ChangeMode mode) {
          ArrayList<Node> res = new ArrayList<>();
-         String color = mode.equals(ChangeMode.ADDED)?JsonV2Comparator.added:"Red";
+         String color = mode.equals(ChangeMode.ADDED)?JsonV2Comparator.added: JsonV2Comparator.deleted;
 
          if (artifact.getArtifactType().equals(ArtifactType.FILE.value) ) {
             ArtifactFile ar = (ArtifactFile) artifact;
+            res.add(new Element("tr").appendElement("th").appendText("FILE").attr("style", "background-color: lightGray"));
+
             if (mode.equals(ChangeMode.DELETED)) {
                 res.add(new Element("tr").appendChildren(new ArrayList<Node>(Arrays.asList(
                         new Element("th").appendText("Service name"),
@@ -359,8 +371,10 @@ public class ArtifactComparator {
                 ))));
             }
         }
+
         else if (artifact.getArtifactType().equals(ArtifactType.MVN.toString())) {
             ArtifactMvn ar1 = (ArtifactMvn) artifact;
+            res.add(new Element("tr").appendElement("th").appendText("MVN").attr("style", "background-color: lightGray"));
             if (mode.equals(ChangeMode.DELETED)) {
                 res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                         new Element("th").appendText("target repository"),
@@ -381,7 +395,7 @@ public class ArtifactComparator {
             }
 
         }
-        res.add(new Element("tr").appendElement("td").appendText(" ").attr("style", "color: white").attr("style", "height: 60px"));
+        res.add(new Element("tr").appendElement("th").appendText(" ").attr("style", "color: white").attr("style", "height: 60px"));
         return res;
     }
 
@@ -424,7 +438,7 @@ public class ArtifactComparator {
 
         for (int i = 0 ; i <artifacts2.length; i ++) {
             if (!foundIn2[i]) {
-                document.body().appendChildren(formATable(artifacts2[i],ChangeMode.ADDED));
+                document.body().selectFirst("table").appendChildren(formATable(artifacts2[i],ChangeMode.ADDED));
             }
         }
         return  document.outerHtml();

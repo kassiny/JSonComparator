@@ -91,9 +91,35 @@ public class ParametersComparator {
         document.body().selectFirst("table").appendElement("tr").appendElement("td").appendText(" ").
                 attr("style", "color: white").attr("style", "height: 20px");
 
+
+        if (p1.getServices() == null) {
+            if (p2.getServices() == null) {
+                return document.outerHtml();
+            }
+
+            else {
+                document.body().selectFirst("table").appendElement("tr").appendElement("td").appendElement("p").appendElement("b").
+                        appendText("services");
+                for (String key: p2.getServices().getSn().keySet()) {
+                    document.body().selectFirst("table").
+                            appendChildren(formATable(p2.getServices().getSn().get(key).getParams(), ChangeMode.ADDED));
+                }
+                return document.outerHtml();
+            }
+        }
+        else {
+            if (p2.getServices() == null) {
+                document.body().selectFirst("table").appendElement("tr").appendElement("td").appendElement("p").appendElement("b").
+                        appendText("services");
+                for (String key: p1.getServices().getSn().keySet()) {
+                    document.body().selectFirst("table").
+                            appendChildren(formATable(p1.getServices().getSn().get(key).getParams(), ChangeMode.DELETED));
+                }
+                return document.outerHtml();
+            }
+        }
         document.body().selectFirst("table").appendElement("tr").appendElement("td").appendElement("p").appendElement("b").
                 appendText("services");
-
         for (String key: p1.getServices().getSn().keySet()) {
             if (p2.getServices().getSn().containsKey(key)) {
                 document.body().selectFirst("table").appendElement("tr").appendElement("th").appendText(key);
@@ -106,7 +132,6 @@ public class ParametersComparator {
                         appendChildren(formATable(p1.getServices().getSn().get(key).getParams(), ChangeMode.DELETED));
             }
         }
-
         for (String key: p2.getServices().getSn().keySet()) {
             if (! p1.getServices().getSn().containsKey(key)) {
                 document.body().selectFirst("table").appendElement("tr").appendElement("th").appendText(key);

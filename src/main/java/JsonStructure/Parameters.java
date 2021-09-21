@@ -94,4 +94,8 @@ public class Parameters {
                 ", services=" + services +
                 '}';
     }
+    public Parameters () {
+        common = new Common();
+        common.setParams(new HashMap<>());
+    }
 }

@@ -28,11 +28,49 @@ public class MetaDataComparator {
 
         document.body().appendElement("table").
                 attr("style", JsonV2Comparator.width);
-        document.body().selectFirst("table").appendElement("tr").append("<th style = width:15%>Element</th><th>Previous</th><th>Current</th>");
+
         document.body().selectFirst("table").appendElement("tr").appendElement("th").
                 appendText("MetaData").attr("text-align","center");
         document.body().selectFirst("table").appendElement("tr").appendElement("th").
                 appendText("Description").attr("text-align","center");
+
+        if (m1.getDescription() == null) {
+            document.body().selectFirst("table").appendElement("tr").appendElement("th").
+                    appendText("Description is missing!!!").attr("style", "color:" + "red" );
+            m1.setDescription(new Description());
+            m1.getDescription().setVersion(0);
+        }
+
+        if (m2.getDescription() == null) {
+            document.body().selectFirst("table").appendElement("tr").appendElement("th").
+                    appendText("Description is missing!!!").attr("style", "color:" + "red" );
+            m2.setDescription(new Description());
+            m2.getDescription().setVersion(0);
+        }
+        if (m1.getApplication() == null) {
+            document.body().selectFirst("table").appendElement("tr").appendElement("th").
+                    appendText("Application is missing!!!").attr("style", "color:" + "red" );
+            m1.setApplication(new Application());
+            m1.getApplication().setName(" ");
+        }
+
+        if (m2.getApplication() == null) {
+            document.body().selectFirst("table").appendElement("tr").appendElement("th").
+                    appendText("Application is missing!!!").attr("style", "color:" + "red" );
+            m2.setApplication(new Application());
+            m2.getApplication().setName(" ");
+        }
+
+        if (m1.getApplication().getName() == null) {
+            document.body().selectFirst("table").appendElement("tr").appendElement("th").
+                    appendText("Application name is missing!!!").attr("style", "color:" + "red" );
+            m1.getApplication().setName(" ");
+        }
+        if (m2.getApplication().getName() == null) {
+            document.body().selectFirst("table").appendElement("tr").appendElement("th").
+                    appendText("Application name is missing!!!").attr("style", "color:" + "red" );
+            m2.getApplication().setName(" ");
+        }
 
         if (m1.getDescription().getVersion() == m2.getDescription().getVersion()) {
             document.body().selectFirst("table").appendElement("tr").append("<th>version</th><th>" +

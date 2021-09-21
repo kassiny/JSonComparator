@@ -1,5 +1,6 @@
 package Comparator;
 
+import JsonStructure.Hashes;
 import JsonStructure.Service;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -8,7 +9,6 @@ import org.jsoup.nodes.Node;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Optional;
 
 public class ServicesComparator {
 
@@ -28,16 +28,45 @@ public class ServicesComparator {
 
         //res.add(new Element("tr").appendElement("th").appendText("Service"));
         String color;
+
+        if (service.getService_name() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("service name is missing!!!").attr("style", "color: red"));
+            service.setService_name(" ");
+        }
+        if (service.getHashes() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("hashes is missing!!!").attr("style", "color: red"));
+            service.setHashes(new Hashes());
+            service.getHashes().setSha1(" ");
+            service.getHashes().setSha256(" ");
+        }
+        if (service.getHashes().getSha1() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("hashes sha1 is missing!!!").attr("style", "color: red"));
+            service.getHashes().setSha1(" ");
+        }
+        if (service.getHashes().getSha256() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("hashes sha256 is missing!!!").attr("style", "color: red"));
+            service.getHashes().setSha256(" ");
+        }
+        if (service.getDocker_registry() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("docker_registry is missing!!!").attr("style", "color: red"));
+            service.setDocker_registry(" ");
+        }
+
         switch (mode) {
-            case DELETED: color = "red"; break;
-            case ADDED: color = "LimeGreen"; break;
+            case DELETED: color = JsonV2Comparator.deleted; break;
+            case ADDED: color = JsonV2Comparator.added; break;
             default: color = "black";
         }
 
         if (mode.equals(ChangeMode.DELETED)) {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("service_short_name").attr("style", JsonV2Comparator.fistColumnWidth),
-                    new Element("th").appendText(service.getService_short_name()).
+                    new Element("th").appendText(service.getService_short_name().isPresent()? service.getService_short_name().get(): "null").
                             attr("style",
                                     "color: " + color)
 
@@ -47,7 +76,7 @@ public class ServicesComparator {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("service_short_name"),
                     new Element("th").appendText(" "),
-                    new Element("th").appendText(service.getService_short_name()).
+                    new Element("th").appendText(service.getService_short_name().isPresent()? service.getService_short_name().get():"null").
                             attr("style",
                                     "color: " + color)
 
@@ -58,7 +87,7 @@ public class ServicesComparator {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("service_name"),
                     new Element("th").appendText(""),
-                    new Element("th").appendText(service.getService_name().isPresent()?service.getService_name().get(): "null").
+                    new Element("th").appendText(service.getService_name()).
                             attr("style", "color:" + color)
 
             ))));
@@ -66,7 +95,7 @@ public class ServicesComparator {
         else {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("service_name"),
-                    new Element("th").appendText(service.getService_name().isPresent()?service.getService_name().get(): "null").
+                    new Element("th").appendText(service.getService_name()).
                             attr("style", "color:" + color)
 
             ))));
@@ -243,24 +272,79 @@ public class ServicesComparator {
         ArrayList<Node> res = new ArrayList<>();
 
         //res.add(new Element("tr").appendElement("th").appendText("Service"));
+        if (service1.getService_name() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("service name is missing!!!").attr("style", "color: red"));
+            service1.setService_name(" ");
+        }
+        if (service1.getHashes() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("hashes is missing!!!").attr("style", "color: red"));
+            service1.setHashes(new Hashes());
+            service1.getHashes().setSha1(" ");
+            service1.getHashes().setSha256(" ");
+        }
+        if (service1.getHashes().getSha1() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("hashes sha1 is missing!!!").attr("style", "color: red"));
+            service1.getHashes().setSha1(" ");
+        }
+        if (service1.getHashes().getSha256() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("hashes sha256 is missing!!!").attr("style", "color: red"));
+            service1.getHashes().setSha256(" ");
+        }
 
-        //if (change == ColorChange.YELLOW)
+        if (service1.getDocker_registry() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("docker_registry is missing!!!").attr("style", "color: red"));
+            service1.setDocker_registry(" ");
+        }
+        //----------
+        if (service2.getService_name() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("service name is missing!!!").attr("style", "color: red"));
+            service2.setService_name(" ");
+        }
+        if (service2.getHashes() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("hashes is missing!!!").attr("style", "color: red"));
+            service2.setHashes(new Hashes());
+            service2.getHashes().setSha1(" ");
+            service2.getHashes().setSha256(" ");
+        }
+        if (service2.getHashes().getSha1() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("hashes sha1 is missing!!!").attr("style", "color: red"));
+            service2.getHashes().setSha1(" ");
+        }
+        if (service2.getHashes().getSha256() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("hashes sha256 is missing!!!").attr("style", "color: red"));
+            service2.getHashes().setSha256(" ");
+        }
+        if (service2.getDocker_registry() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("docker_registry is missing!!!").attr("style", "color: red"));
+            service2.setDocker_registry(" ");
+        }
+
         res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                 new Element("th").appendText("service_short_name").attr("style", JsonV2Comparator.fistColumnWidth),
-                new Element("th").appendText(service1.getService_short_name()).
+                new Element("th").appendText(service1.getService_short_name().isPresent()? service1.getService_short_name().get():"null").
                         attr("style",
                                 "color: " + (service1.getService_short_name().equals(service2.getService_short_name())? "black":"GoldenRod")),
-                new Element("th").appendText(service2.getService_short_name()).
+                new Element("th").appendText(service2.getService_short_name().isPresent()? service2.getService_short_name().get(): "null").
                         attr("style",
                                 "color:" + (service1.getService_short_name().equals(service2.getService_short_name())? "black":"GoldenRod"))
         ))));
 
         res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                 new Element("th").appendText("service_name"),
-                new Element("th").appendText(service1.getService_name().isPresent()? service1.getService_name().get(): "null").
+                new Element("th").appendText(service1.getService_name()).
                         attr("style", "color:" +
                                         (service1.getService_name().equals(service2.getService_name())?"black":"GoldenRod")),
-                new Element("th").appendText(service2.getService_name().isPresent()? service2.getService_name().get(): "null").
+                new Element("th").appendText(service2.getService_name()).
                         attr("style", "color:" +
                                 (service1.getService_name().equals(service2.getService_name())?"black":"GoldenRod"))
         ))));
@@ -372,9 +456,8 @@ public class ServicesComparator {
     }
     public static String compare (Service[] s1, Service[] s2) {
          Document document = Jsoup.parse("");
-         document.body().appendElement("table").appendElement("tr").appendElement("th").appendText("Services");
-         document.body().selectFirst("table").attr("style", "border: 1px solid black")
-                 .attr("style", JsonV2Comparator.width);
+         document.body().appendElement("table").attr("style", JsonV2Comparator.width).appendElement("tr").appendElement("th").appendText("Services");
+         document.body().selectFirst("table");
          boolean [] foundInSecond = new boolean[s2.length] ;
          for (boolean b: foundInSecond
               ) {
@@ -382,17 +465,17 @@ public class ServicesComparator {
          }
 
          for (Service ser1: s1) {
-             boolean foundchanged = false;
+             boolean foundChanged = false;
              for (int i = 0; i < s2.length; i++) {
                  // Comparing services by keys
                 if (ser1.getDocker_image_name().equals(s2[i].getDocker_image_name())
                         && ser1.getDocker_tag().equals(s2[i].getDocker_tag())) {
-                    foundchanged = true;
+                    foundChanged = true;
                     document.body().selectFirst("table").appendChildren(formATable(ser1, s2[i]));
                     foundInSecond[i] = true;
                 }
              }
-             if (!foundchanged) {
+             if (!foundChanged) {
                  document.body().selectFirst("table").appendChildren(formATable(ser1, ChangeMode.DELETED));
              }
          }

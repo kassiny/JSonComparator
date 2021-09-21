@@ -1,5 +1,6 @@
 package Comparator;
 
+import JsonStructure.Hashes;
 import JsonStructure.Rpm;
 import JsonStructure.Service;
 import org.jsoup.Jsoup;
@@ -15,6 +16,28 @@ public class RpmComparator {
     static ArrayList<Node> formATable (Rpm rpm, ChangeMode mode) {
         ArrayList<Node> res = new ArrayList<>();
         String  color = (mode.equals(ChangeMode.DELETED)?JsonV2Comparator.deleted: JsonV2Comparator.added);
+
+        if (rpm.getHashes() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("Hashes is missing!!!").attr("style", "color: red"));
+            rpm.setHashes(new Hashes());
+            rpm.getHashes().setSha1(" ");
+            rpm.getHashes().setSha256(" ");
+        }
+        if (rpm.getHashes().getSha1() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("Hashes sha1 is missing!!!").attr("style", "color: red"));
+            rpm.getHashes().setSha1(" ");
+        }
+        if (rpm.getHashes().getSha256() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("Hashes sha256 is missing!!!").attr("style", "color: red"));
+            rpm.getHashes().setSha256(" ");
+        }
+        if (rpm.getRpm_repository_name() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("rpm_repository_name is missing!!!").attr("style", "color: red"));
+        }
         if (mode.equals(ChangeMode.DELETED)) {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("url").attr("style", JsonV2Comparator.fistColumnWidth),
@@ -82,6 +105,50 @@ public class RpmComparator {
         String equal = "black";
         String diff = "GoldenRod";
 
+        if (rpm1.getHashes() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("Hashes is missing!!!").attr("style", "color: red"));
+            rpm1.setHashes(new Hashes());
+            rpm1.getHashes().setSha1(" ");
+            rpm1.getHashes().setSha256(" ");
+        }
+        if (rpm1.getHashes().getSha1() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("Hashes sha1 is missing!!!").attr("style", "color: red"));
+            rpm1.getHashes().setSha1(" ");
+        }
+        if (rpm1.getHashes().getSha256() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("Hashes sha256 is missing!!!").attr("style", "color: red"));
+            rpm1.getHashes().setSha256(" ");
+        }
+        if (rpm1.getRpm_repository_name() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("rpm_repository_name is missing!!!").attr("style", "color: red"));
+        }
+        //-------------
+        if (rpm2.getHashes() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("Hashes is missing!!!").attr("style", "color: red"));
+            rpm2.setHashes(new Hashes());
+            rpm2.getHashes().setSha1(" ");
+            rpm2.getHashes().setSha256(" ");
+        }
+        if (rpm2.getHashes().getSha1() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("Hashes sha1 is missing!!!").attr("style", "color: red"));
+            rpm2.getHashes().setSha1(" ");
+        }
+        if (rpm2.getHashes().getSha256() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("Hashes sha256 is missing!!!").attr("style", "color: red"));
+            rpm2.getHashes().setSha256(" ");
+        }
+        if (rpm2.getRpm_repository_name() == null) {
+            res.add(new Element("tr").appendElement("th").
+                    appendText("rpm_repository_name is missing!!!").attr("style", "color: red"));
+        }
+
         res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                 new Element("th").appendText("url").attr("style", JsonV2Comparator.fistColumnWidth),
                 new Element("th").appendText(rpm1.getUrl()).attr("style", "color:" +
@@ -141,7 +208,7 @@ public class RpmComparator {
             boolean foundchanged = false;
             for (int i = 0; i < rpm2.length; i++) {
                 // Comparing services by keys
-                if (r1.getRpm_repository_name().equals(rpm2[i].getRpm_repository_name())) {
+                if (r1.getUrl().equals(rpm2[i].getUrl())) {
                     foundchanged = true;
                     document.body().selectFirst("table").appendChildren(formATable(r1, rpm2[i]));
                     foundInSecond[i] = true;

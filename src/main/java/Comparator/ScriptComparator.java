@@ -114,6 +114,7 @@ public class ScriptComparator {
         ArrayList<Node> res = new ArrayList<>();
         String eq = "black";
         String diff = "GoldenRod";
+
         res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                 new Element("th").appendText("service short name").attr("style", JsonV2Comparator.fistColumnWidth),
                 new Element("th").appendText(script1.getService_short_name().isPresent()?

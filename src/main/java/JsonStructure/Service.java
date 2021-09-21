@@ -8,9 +8,8 @@ import java.util.Optional;
 
 public class Service {
     @JsonProperty("service-short-name")
-            //!!!!!!!!!!!!!!!!!!!!!!1
-    String service_short_name;
-    Optional<String> service_name;
+    Optional<String> service_short_name;
+    String service_name;
 
     Optional<String> artifact_type;
     String docker_registry;
@@ -22,7 +21,7 @@ public class Service {
     Optional<String> github_hash;
     Hashes hashes;
 
-    public Optional<String> getService_name() {
+    public String getService_name() {
         return service_name;
     }
 
@@ -42,7 +41,7 @@ public class Service {
         return github_hash;
     }
 
-    public void setService_name(Optional<String> service_name) {
+    public void setService_name(String service_name) {
         this.service_name = service_name;
     }
 
@@ -70,11 +69,11 @@ public class Service {
         this.github_hash = github_hash;
     }
 
-    public String getService_short_name() {
+    public Optional<String> getService_short_name() {
         return service_short_name;
     }
 
-    public void setService_short_name(String service_short_name) {
+    public void setService_short_name(Optional<String> service_short_name) {
         this.service_short_name = service_short_name;
     }
 
@@ -141,7 +140,7 @@ public class Service {
     }
 
     public Service () {
-        service_name = Optional.empty();
+        service_short_name = Optional.empty();
         artifact_type = Optional.empty();
         force = Optional.empty();
         github_repository = Optional.empty();

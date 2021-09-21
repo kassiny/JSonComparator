@@ -11,10 +11,15 @@ public class JsonV2Comparator {
     public static final String fistColumnWidth = "width: 15%";
     public static final String fontSize = "font-size:30px";
 
-    public static String compare (JsonV2 json1, JsonV2 json2) {
+    public static String compare (JsonV2 json1, JsonV2 json2, String filename1, String filename2) {
         Document document = Jsoup.parse("");
         document.body().appendElement("table").
                 attr("style", "width: 100%, font-size: 150%");
+
+        document.body().selectFirst("table").appendElement("tr").
+                appendElement("th").appendText("attribute name").attr("style",fistColumnWidth).
+                appendElement("th").appendText(filename1).
+                appendElement("th").appendText(filename2);
 
         document.body().selectFirst("table").appendElement("tr").appendElement("th").appendElement("p").appendElement("b").appendText("MetaData")
                 .attr("style", fontSize);

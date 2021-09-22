@@ -18,7 +18,7 @@ public class JsonV2Comparator {
 
         document.body().selectFirst("table").appendElement("tr").
                 appendElement("th").appendText("attribute name").attr("style",fistColumnWidth).
-                appendElement("th").appendText(filename1).
+                appendElement("th").appendText(filename1).attr("style", "width:42.5%").
                 appendElement("th").appendText(filename2);
 
         document.body().selectFirst("table").appendElement("tr").appendElement("th").appendElement("p").appendElement("b").appendText("MetaData")
@@ -30,6 +30,7 @@ public class JsonV2Comparator {
         document.body().selectFirst("table").appendElement("tr").appendElement("th").appendElement("p").appendElement("b").appendText("Services")
                 .attr("style", fontSize);
         Document servicesHtml = Jsoup.parse(ServicesComparator.compare(json1.getServices(), json2.getServices()));
+        //document.body().selectFirst("table").appendChildren(servicesHtml.body().selectFirst("table").children());
         document.body().selectFirst("table").appendChild(servicesHtml.body().selectFirst("table"));
 
         document.body().selectFirst("table").appendElement("tr").appendElement("th").appendElement("p").

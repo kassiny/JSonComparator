@@ -14,6 +14,11 @@ public class ScriptComparator {
     static ArrayList<Node> formATable(Script script, ChangeMode mode) {
         ArrayList<Node> res = new ArrayList<>();
         String color = mode.equals(ChangeMode.DELETED)?"Red":"LimeGreen";
+        if (script.getUrl() == null) {
+            res.add(new Element("tr").appendChild(new Element("th").appendText("URL script is missing!!").
+                    attr("style", "color:red")));
+            script.setUrl(" ");
+        }
 
         if (mode.equals(ChangeMode.DELETED)) {
             res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
@@ -114,6 +119,17 @@ public class ScriptComparator {
         ArrayList<Node> res = new ArrayList<>();
         String eq = "black";
         String diff = "GoldenRod";
+
+        if (script1.getUrl() == null) {
+            res.add(new Element("tr").appendChild(new Element("th").appendText("URL script is missing!!").
+                    attr("style", "color:red")));
+            script1.setUrl(" ");
+        }
+        if (script2.getUrl() == null) {
+            res.add(new Element("tr").appendChild(new Element("th").appendText("URL script is missing!!").
+                    attr("style", "color:red")));
+            script2.setUrl(" ");
+        }
 
         res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
                 new Element("th").appendText("service short name").attr("style", JsonV2Comparator.fistColumnWidth),

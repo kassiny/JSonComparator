@@ -30,30 +30,30 @@ public class ServicesComparator {
         String color;
 
         if (service.getService_name() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("service name is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild( new Element("th").
+                    appendText("service name is missing!!!").attr("style", "color: red")));
             service.setService_name(" ");
         }
         if (service.getHashes() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("hashes is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild( new Element("th").
+                    appendText("hashes is missing!!!").attr("style", "color: red")));
             service.setHashes(new Hashes());
             service.getHashes().setSha1(" ");
             service.getHashes().setSha256(" ");
         }
         if (service.getHashes().getSha1() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("hashes sha1 is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild( new Element("th").
+                    appendText("hashes sha1 is missing!!!").attr("style", "color: red")));
             service.getHashes().setSha1(" ");
         }
         if (service.getHashes().getSha256() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("hashes sha256 is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("hashes sha256 is missing!!!").attr("style", "color: red")));
             service.getHashes().setSha256(" ");
         }
         if (service.getDocker_registry() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("docker_registry is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild( new Element("th").
+                    appendText("docker_registry is missing!!!").attr("style", "color: red")));
             service.setDocker_registry(" ");
         }
 
@@ -256,14 +256,17 @@ public class ServicesComparator {
             ))));
         }
         else {
-            res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+            res.add(new Element("tr").attr("margin-bottom", "60px").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("sha256"),
                     new Element("th").appendText(service.getHashes().getSha256()).
-                            attr("style", "color:" + color)
+                            attr("style", "color:" + color).
+                            attr("margin-bottom", "60px")
             ))));
         }
 
-        res.add(new Element("tr").appendElement("td").appendText("--------").attr("style", "color:white"));
+        res.add(new Element("tr").appendElement("td").appendText("--------").attr("style", "color:white").
+                appendElement("td").appendText("--------").attr("style", "color:white").
+                appendElement("td").appendText("--------").attr("style", "color:white"));
 
         return res;
     }
@@ -273,59 +276,59 @@ public class ServicesComparator {
 
         //res.add(new Element("tr").appendElement("th").appendText("Service"));
         if (service1.getService_name() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("service name is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("service name is missing!!!").attr("style", "color: red")));
             service1.setService_name(" ");
         }
         if (service1.getHashes() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("hashes is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild( new Element("th").
+                    appendText("hashes is missing!!!").attr("style", "color: red")));
             service1.setHashes(new Hashes());
             service1.getHashes().setSha1(" ");
             service1.getHashes().setSha256(" ");
         }
         if (service1.getHashes().getSha1() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("hashes sha1 is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild( new Element("th").
+                    appendText("hashes sha1 is missing!!!").attr("style", "color: red")));
             service1.getHashes().setSha1(" ");
         }
         if (service1.getHashes().getSha256() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("hashes sha256 is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild( new Element("th").
+                    appendText("hashes sha256 is missing!!!").attr("style", "color: red")));
             service1.getHashes().setSha256(" ");
         }
 
         if (service1.getDocker_registry() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("docker_registry is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("docker_registry is missing!!!").attr("style", "color: red")));
             service1.setDocker_registry(" ");
         }
         //----------
         if (service2.getService_name() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("service name is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild( new Element("th").
+                    appendText("service name is missing!!!").attr("style", "color: red")));
             service2.setService_name(" ");
         }
         if (service2.getHashes() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("hashes is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild( new Element("th").
+                    appendText("hashes is missing!!!").attr("style", "color: red")));
             service2.setHashes(new Hashes());
             service2.getHashes().setSha1(" ");
             service2.getHashes().setSha256(" ");
         }
         if (service2.getHashes().getSha1() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("hashes sha1 is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild( new Element("th").
+                    appendText("hashes sha1 is missing!!!").attr("style", "color: red")));
             service2.getHashes().setSha1(" ");
         }
         if (service2.getHashes().getSha256() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("hashes sha256 is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("hashes sha256 is missing!!!").attr("style", "color: red")));
             service2.getHashes().setSha256(" ");
         }
         if (service2.getDocker_registry() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("docker_registry is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild( new Element("th").
+                    appendText("docker_registry is missing!!!").attr("style", "color: red")));
             service2.setDocker_registry(" ");
         }
 
@@ -440,17 +443,20 @@ public class ServicesComparator {
                                 (service1.getHashes().getSha1().equals(service2.getHashes().getSha1())?"black":"GoldenRod"))
         ))));
 
-        res.add(new Element("tr").appendChildren(new ArrayList<>(Arrays.asList(
+        res.add(new Element("tr"). attr("margin-bottom", "60px").appendChildren(new ArrayList<>(Arrays.asList(
                 new Element("th").appendText("sha256"),
                 new Element("th").appendText(service1.getHashes().getSha256()).
                         attr("style", "color:" +
                                 (service1.getHashes().getSha256().equals(service2.getHashes().getSha256())?"black":"GoldenRod")),
                 new Element("th").appendText(service2.getHashes().getSha256()).
                         attr("style", "color:" +
-                                (service1.getHashes().getSha256().equals(service2.getHashes().getSha256())?"black":"GoldenRod"))
+                                (service1.getHashes().getSha256().equals(service2.getHashes().getSha256())?"black":"GoldenRod")).
+                        attr("margin-bottom" , "60px")
         ))));
 
-        res.add(new Element("tr").appendElement("td").appendText("--------").attr("style", "color:white"));
+        res.add(new Element("tr").appendElement("td").appendText("--------").attr("style", "color:white").
+                appendElement("td").appendText("--------").attr("style", "color:white").
+                appendElement("td").appendText("-------- <br>").attr("style", "color:white"));
 
         return res;
     }

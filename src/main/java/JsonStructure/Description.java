@@ -1,13 +1,13 @@
 package JsonStructure;
 
 public class Description {
-    int version;
+    Integer version;
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 

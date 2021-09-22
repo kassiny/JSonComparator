@@ -26,8 +26,8 @@ public class ArtifactComparator {
         }
 
         if (mvn.getGroupId() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("group id is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild( new Element("th").
+                    appendText("group id is missing!!!").attr("style", "color: red")));
             mvn.setGroupId(" ");
         }
         if (mvn.getVersion() == null) {
@@ -36,31 +36,31 @@ public class ArtifactComparator {
             mvn.setVersion(" ");
         }
         if (mvn.getMvn_type() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("mvn type is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild( new Element("th").
+                    appendText("mvn type is missing!!!").attr("style", "color: red")));
             mvn.setMvn_type(" ");
         }
         if (mvn.getMvn_repository() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("mvn repository is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild( new Element("th").
+                    appendText("mvn repository is missing!!!").attr("style", "color: red")));
             mvn.setMvn_repository( " ");
         }
         if (mvn.getHashes() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("Hashes is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild( new Element("th").
+                    appendText("Hashes is missing!!!").attr("style", "color: red")));
             mvn.setHashes(new Hashes());
             mvn.getHashes().setSha1(" ");
             mvn.getHashes().setSha256(" ");
         }
 
         if (mvn.getHashes().getSha1() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("Hashes sha1 is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("Hashes sha1 is missing!!!").attr("style", "color: red")));
             mvn.getHashes().setSha1(" ");
         }
         if (mvn.getHashes().getSha256() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("Hashes sha256 is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("Hashes sha256 is missing!!!").attr("style", "color: red")));
             mvn.getHashes().setSha256(" ");
         }
 
@@ -197,31 +197,31 @@ public class ArtifactComparator {
             mvn1.setVersion(" ");
         }
         if (mvn1.getMvn_type() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("mvn type is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("mvn type is missing!!!").attr("style", "color: red")));
             mvn1.setMvn_type(" ");
         }
         if (mvn1.getMvn_repository() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("mvn repository is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("mvn repository is missing!!!").attr("style", "color: red")));
             mvn1.setMvn_repository( " ");
         }
         if (mvn1.getHashes() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("Hashes is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("Hashes is missing!!!").attr("style", "color: red")));
             mvn1.setHashes(new Hashes());
             mvn1.getHashes().setSha1(" ");
             mvn1.getHashes().setSha256(" ");
         }
 
         if (mvn1.getHashes().getSha1() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("Hashes sha1 is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("Hashes sha1 is missing!!!").attr("style", "color: red")));
             mvn1.getHashes().setSha1(" ");
         }
         if (mvn1.getHashes().getSha256() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("Hashes sha256 is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("Hashes sha256 is missing!!!").attr("style", "color: red")));
             mvn1.getHashes().setSha256(" ");
         }
 
@@ -237,32 +237,32 @@ public class ArtifactComparator {
             mvn2.setVersion(" ");
         }
         if (mvn2.getMvn_type() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("mvn type is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("mvn type is missing!!!").attr("style", "color: red")));
             mvn2.setMvn_type(" ");
         }
         if (mvn2.getMvn_repository() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("mvn repository is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("mvn repository is missing!!!").attr("style", "color: red")));
             mvn2.setMvn_repository( " ");
         }
 
         if (mvn2.getHashes() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("Hashes is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("Hashes is missing!!!").attr("style", "color: red")));
             mvn2.setHashes(new Hashes());
             mvn2.getHashes().setSha1(" ");
             mvn2.getHashes().setSha256(" ");
         }
 
         if (mvn2.getHashes().getSha1() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("Hashes sha1 is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("Hashes sha1 is missing!!!").attr("style", "color: red")));
             mvn2.getHashes().setSha1(" ");
         }
         if (mvn2.getHashes().getSha256() == null) {
-            res.add(new Element("tr").appendElement("th").
-                    appendText("Hashes sha256 is missing!!!").attr("style", "color: red"));
+            res.add(new Element("tr").appendChild(new Element("th").
+                    appendText("Hashes sha256 is missing!!!").attr("style", "color: red")));
             mvn2.getHashes().setSha256(" ");
         }
 
@@ -362,37 +362,37 @@ public class ArtifactComparator {
             String diff = "GoldenRod";
 
             if (((ArtifactFile) artifact1).getHashes() == null) {
-                res.add(new Element("tr").appendElement("th").
-                        appendText("hashes is missing!!!").attr("style", "color: red"));
+                res.add(new Element("tr").appendChild(new Element("th").
+                        appendText("hashes is missing!!!").attr("style", "color: red")));
                 ((ArtifactFile) artifact1).setHashes(new Hashes());
                 ((ArtifactFile) artifact1).getHashes().setSha1(" ");
                 ((ArtifactFile) artifact1).getHashes().setSha256(" ");
             }
             if (((ArtifactFile) artifact2).getHashes() == null) {
-                res.add(new Element("tr").appendElement("th").
-                        appendText("hashes is missing!!!").attr("style", "color: red"));
+                res.add(new Element("tr").appendChild(new Element("th").
+                        appendText("hashes is missing!!!").attr("style", "color: red")));
                 ((ArtifactFile) artifact2).setHashes(new Hashes());
                 ((ArtifactFile) artifact2).getHashes().setSha1(" ");
                 ((ArtifactFile) artifact2).getHashes().setSha256(" ");
             }
             if (((ArtifactFile) artifact1).getHashes().getSha1() == null) {
-                res.add(new Element("tr").appendElement("th").
-                        appendText("hashes sha1 is missing!!!").attr("style", "color: red"));
+                res.add(new Element("tr").appendChild(new Element("th").
+                        appendText("hashes sha1 is missing!!!").attr("style", "color: red")));
                 ((ArtifactFile) artifact1).getHashes().setSha1(" ");
             }
             if (((ArtifactFile) artifact2).getHashes().getSha1() == null) {
-                res.add(new Element("tr").appendElement("th").
-                        appendText("hashes sha1 is missing!!!").attr("style", "color: red"));
+                res.add(new Element("tr").appendChild(new Element("th").
+                        appendText("hashes sha1 is missing!!!").attr("style", "color: red")));
                 ((ArtifactFile) artifact2).getHashes().setSha1(" ");
             }
             if (((ArtifactFile) artifact1).getHashes().getSha256() == null) {
-                res.add(new Element("tr").appendElement("th").
-                        appendText("hashes sha256 is missing!!!").attr("style", "color: red"));
+                res.add(new Element("tr").appendChild(new Element("th").
+                        appendText("hashes sha256 is missing!!!").attr("style", "color: red")));
                 ((ArtifactFile) artifact1).getHashes().setSha256(" ");
             }
             if (((ArtifactFile) artifact2).getHashes().getSha256() == null) {
-                res.add(new Element("tr").appendElement("th").
-                        appendText("hashes sha256 is missing!!!").attr("style", "color: red"));
+                res.add(new Element("tr").appendChild(new Element("th").
+                        appendText("hashes sha256 is missing!!!").attr("style", "color: red")));
                 ((ArtifactFile) artifact2).getHashes().setSha256(" ");
             }
 

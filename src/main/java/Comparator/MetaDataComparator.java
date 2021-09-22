@@ -29,10 +29,8 @@ public class MetaDataComparator {
         document.body().appendElement("table").
                 attr("style", JsonV2Comparator.width);
 
-        document.body().selectFirst("table").appendElement("tr").appendElement("th").
-                appendText("MetaData").attr("text-align","center");
-        document.body().selectFirst("table").appendElement("tr").appendElement("th").
-                appendText("Description").attr("text-align","center");
+        document.body().selectFirst("table").attr("style", JsonV2Comparator.width).appendElement("tr").appendElement("th").
+                appendText("Description").attr("text-align","center").attr("style", JsonV2Comparator.fistColumnWidth);
 
         if (m1.getDescription() == null) {
             document.body().selectFirst("table").appendElement("tr").appendElement("th").
@@ -45,6 +43,17 @@ public class MetaDataComparator {
             document.body().selectFirst("table").appendElement("tr").appendElement("th").
                     appendText("Description is missing!!!").attr("style", "color:" + "red" );
             m2.setDescription(new Description());
+            m2.getDescription().setVersion(0);
+        }
+
+        if (m1.getDescription().getVersion() == null) {
+            document.body().selectFirst("table").appendElement("tr").appendElement("th").
+                    appendText("Description version is missing, replaced with 0!!!").attr("style", "color:" + "red" );
+            m1.getDescription().setVersion(0);
+        }
+        if (m2.getDescription().getVersion() == null) {
+            document.body().selectFirst("table").appendElement("tr").appendElement("th").
+                    appendText("Description version is missing, replaced with 0!!!").attr("style", "color:" + "red" );
             m2.getDescription().setVersion(0);
         }
         if (m1.getApplication() == null) {
@@ -99,7 +108,8 @@ public class MetaDataComparator {
         else {
             document.body().selectFirst("table").appendElement("tr").appendChildren(new ArrayList<>(Arrays.asList(
                     new Element("th").appendText("name"),
-                    new Element("th").appendText(m1.getApplication().getName()).attr("style", "color: GoldenROd"),
+                    new Element("th").appendText(m1.getApplication().getName()).
+                            attr("style", "color: GoldenROd").attr("style", "width:42.5%"),
                     new Element("th").appendText(m2.getApplication().getName()).attr("style", "color: GoldenROd")
             )));
         }
